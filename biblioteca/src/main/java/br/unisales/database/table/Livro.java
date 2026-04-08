@@ -40,7 +40,7 @@ public class Livro {
     /**
      * @apiNote Adiciona uma categoria ao livro para ser salva no banco de dados
      * @param categoria
-     * @author Vito Rodrigues Franzosi
+     * @author Alguem
      * @Data Criação 19.03.2026
      */
     public void addCategoria(Categoria categoria) {
@@ -57,7 +57,7 @@ public class Livro {
     /**
      * @apiNote Remove uma categoria do livro para ser excluída do banco de dados
      * @param categoria
-     * @author Vito Rodrigues Franzosi
+     * @author Alguem
      * @Data Criação 19.03.2026
      */
     public void removeCategoria(Categoria categoria) {
