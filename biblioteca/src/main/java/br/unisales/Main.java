@@ -19,7 +19,7 @@ public class Main {
         scanner = new Scanner(System.in, StandardCharsets.UTF_8);
 
         System.out.println("==========================================");
-        System.out.println("      SISTEMA DE BIBLIOTECA COM JPA       ");
+        System.out.println("      BIBLIOTECA       ");
         System.out.println("==========================================");
         int opcao;
 
@@ -30,7 +30,7 @@ public class Main {
             switch (opcao) {
                 case 1 -> menuCategoria();
                 case 2 -> menuUsuario();
-                case 0 -> System.out.println("Encerrando o sistema...");
+                case 0 -> System.out.println("Encerrando...");
                 default -> System.out.println("Opcao invalida. Tente novamente.");
             }
             System.out.println();
