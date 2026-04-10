@@ -19,7 +19,7 @@ public class Main {
         scanner = new Scanner(System.in, StandardCharsets.UTF_8);
      
         System.out.println("==========================================");
-        System.out.println("      SISTEMA DE BIBLIOTECA COM JPA       ");
+        System.out.println("       BIBLIOTECA       ");
         System.out.println("==========================================");
         int opcao;
 
