@@ -1,7 +1,7 @@
 package br.unisales;
 
-import br.unisales.database.table.Emprestimo;
 import br.unisales.menu.CategoriaMenu;
+import br.unisales.menu.EmprestimoMenu;
 import br.unisales.menu.UsuarioMenu;
 import br.unisales.menu.util.MenuUtil;
 
@@ -55,6 +55,7 @@ public class Main {
         System.out.println("--------------- MENU ----------------");
         System.out.println("1 - Categoria");
         System.out.println("2 - Usuário");
+        System.out.println("3 - Empréstimo");
         System.out.println("0 - Sair");
         System.out.println("-------------------------------------");
     }
@@ -67,6 +68,11 @@ public class Main {
     private static void menuUsuario() {
         MenuUtil.limparConsole();
         new UsuarioMenu(scanner);
+    }
+
+    private static void menuEmprestimo() {
+        MenuUtil.limparConsole();
+        new EmprestimoMenu(scanner);
     }
 
     private static Integer lerInteiro(String mensagem) {
