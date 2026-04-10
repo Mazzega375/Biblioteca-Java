@@ -15,7 +15,7 @@ public final class UsuarioMenu {
     public UsuarioMenu(Scanner scanner) {
         this.scanner = scanner;
         System.out.println("==========================================");
-        System.out.println("   SISTEMA DE CRUD DE USUÁRIO COM JPA     ");
+        System.out.println("    USUÁRIO     ");
         System.out.println("==========================================");
         /*
          * Cria a fábrica de EntityManager com base na persistence-unit

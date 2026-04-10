@@ -14,7 +14,7 @@ public final class CategoriaMenu {
     public CategoriaMenu(Scanner scanner) {
         this.scanner = scanner;
         System.out.println("==========================================");
-        System.out.println("   SISTEMA DE CRUD DE CATEGORIA COM JPA     ");
+        System.out.println("   CATEGORIA     ");
         System.out.println("==========================================");
         /*
          * Cria a fábrica de EntityManager com base na persistence-unit
