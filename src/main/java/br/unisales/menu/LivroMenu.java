@@ -5,13 +5,16 @@ import java.util.Scanner;
 
 import br.unisales.database.table.Livro;
 import br.unisales.database.table.Autor;
+import br.unisales.database.table.Exemplar;
 import br.unisales.manager_factory.ManagerFactory;
 import br.unisales.menu.util.MenuUtil;
 import br.unisales.service.LivroService;
+import br.unisales.service.ExemplarService;
 
 public final class LivroMenu {
     private final Scanner scanner;
     private final LivroService livroService;
+    private final ExemplarService exemplarService;
 
     public LivroMenu(Scanner scanner) {
         this.scanner = scanner;
@@ -30,6 +33,7 @@ public final class LivroMenu {
          */
         ManagerFactory emf = new ManagerFactory("SQLitePU");
         this.livroService = new LivroService(emf.get());
+        this.exemplarService = new ExemplarService(emf.get());
         int opcao;
         do {
             exibirMenu();
@@ -98,6 +102,12 @@ public final class LivroMenu {
         }
 
         livroService.inserir(livro);
+
+        // Criar exemplar automaticamente
+        Exemplar exemplar = Exemplar.builder()
+                .isbnLivro(isbn)
+                .build();
+        exemplarService.inserir(exemplar);
     }
 
     /**
@@ -272,6 +282,21 @@ public final class LivroMenu {
         System.out.println("ISBN: " + livro.getIsbn());
         System.out.println("Título: " + livro.getTitulo());
         System.out.println("Ano: " + livro.getAno());
+        
+        // Buscar e exibir exemplares
+        List<Exemplar> exemplares = livroService.listarExemplaresPorLivro(livro.getIsbn());
+        if (!exemplares.isEmpty()) {
+            System.out.print("ID Exemplar: ");
+            for (int i = 0; i < exemplares.size(); i++) {
+                System.out.print(exemplares.get(i).getId());
+                if (i < exemplares.size() - 1) {
+                    System.out.print(", ");
+                }
+            }
+            System.out.println();
+        } else {
+            System.out.println("Nenhum exemplar cadastrado.");
+        }
         
         if (!livro.getPalavrasChave().isEmpty()) {
             System.out.println("Palavras-chave: " + String.join(", ", livro.getPalavrasChave()));

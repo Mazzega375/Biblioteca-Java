@@ -2,6 +2,7 @@ package br.unisales.service;
 
 import br.unisales.database.table.Livro;
 import br.unisales.database.table.Autor;
+import br.unisales.database.table.Exemplar;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -169,6 +170,20 @@ public class LivroService {
                     .getResultList();
         } catch (Exception e) {
             System.out.println("Erro ao listar autores: " + e.getMessage());
+            return List.of();
+        } finally {
+            entityManager.close();
+        }
+    }
+    public List<Exemplar> listarExemplaresPorLivro(String isbn) {
+        EntityManager entityManager = this.entityManagerFactory.createEntityManager();
+        try {
+            return entityManager
+                    .createQuery("SELECT e FROM Exemplar e WHERE e.isbnLivro = :isbn", Exemplar.class)
+                    .setParameter("isbn", isbn)
+                    .getResultList();
+        } catch (Exception e) {
+            System.out.println("Erro ao listar exemplares: " + e.getMessage());
             return List.of();
         } finally {
             entityManager.close();
