@@ -33,11 +33,14 @@ public final class EmprestimoMenu {
             exibirMenu();
             opcao = lerInteiro("Escolha uma opção: ");
             switch (opcao) {
-                case 1 -> cadastrar();
-                case 2 -> listar();
-                case 3 -> buscarPorId();
-                case 4 -> atualizar();
-                case 5 -> excluir();
+                case 1 -> emprestarExemplar();
+                case 2 -> devolverExemplar();
+                case 3 -> renovar();
+                case 4 -> calcularMultaMenu();
+                case 5 -> listar();
+                case 6 -> buscarPorId();
+                case 7 -> atualizar();
+                case 8 -> excluir();
                 case 100 -> System.out.println("Voltando para o menu principal...");
                 default -> System.out.println("Opção inválida. Tente novamente.");
             }
@@ -49,44 +52,32 @@ public final class EmprestimoMenu {
 
     private static void exibirMenu() {
         System.out.println("--------------- MENU ----------------");
-        System.out.println("1 - Cadastrar empréstimo");
-        System.out.println("2 - Listar empréstimos");
-        System.out.println("3 - Buscar empréstimo por ID");
-        System.out.println("4 - Atualizar empréstimo");
-        System.out.println("5 - Excluir empréstimo");
+        System.out.println("1 - Emprestar exemplar");
+        System.out.println("2 - Devolver exemplar");
+        System.out.println("3 - Renovar empréstimo");
+        System.out.println("4 - Calcular multa");
+        System.out.println("5 - Listar empréstimos");
+        System.out.println("6 - Buscar empréstimo por ID");
+        System.out.println("7 - Atualizar empréstimo");
+        System.out.println("8 - Excluir empréstimo");
         System.out.println("100 - Voltar");
         System.out.println("-------------------------------------");
     }
 
-    private void cadastrar() {
+    private void emprestarExemplar() {
         MenuUtil.limparConsole();
-        System.out.println("=== CADASTRAR EMPRÉSTIMO ===");
+        System.out.println("=== EMPRESTAR EXEMPLAR ===");
 
         Integer usuarioId = lerInteiro("Informe o ID do usuário: ");
-        Usuario usuario = emprestimoService.buscarUsuarioPorId(usuarioId);
-        if (usuario == null) {
-            System.out.println("Usuário não encontrado.");
-            return;
-        }
-
+        Integer exemplarId = lerInteiro("Informe o ID do exemplar: ");
         String isbn = lerTexto("Informe o ISBN do livro: ");
-        Livro livro = emprestimoService.buscarLivroPorIsbn(isbn);
-        if (livro == null) {
-            System.out.println("Livro não encontrado.");
-            return;
+        LocalDate dataPrevista = lerData("Informe a data prevista de devolução (dd/MM/yyyy): ");
+
+        if (emprestimoService.emprestarExemplar(usuarioId, exemplarId, isbn, dataPrevista)) {
+            System.out.println("Empréstimo registrado com sucesso.");
+        } else {
+            System.out.println("Falha ao registrar empréstimo. Verifique os dados informados.");
         }
-
-        LocalDate dataDevolucaoPrevista = lerData("Informe a data prevista de devolução (dd/MM/yyyy): ");
-
-        Emprestimo emprestimo = Emprestimo.builder()
-                .usuario(usuario)
-                .livro(livro)
-                .dataEmprestimo(LocalDate.now())
-                .dataDevolucaoPrevista(dataDevolucaoPrevista)
-                .devolvido(Boolean.FALSE)
-                .build();
-
-        emprestimoService.inserir(emprestimo);
     }
 
     private void listar() {
@@ -130,16 +121,17 @@ public final class EmprestimoMenu {
             return;
         }
 
-        LocalDate dataDevolucaoPrevista = lerData("Informe a nova data prevista de devolução (dd/MM/yyyy): ");
-        emprestimo.setDataDevolucaoPrevista(dataDevolucaoPrevista);
+        LocalDate dataPrevista = lerData("Informe a nova data prevista de devolução (dd/MM/yyyy): ");
+        emprestimo.setDataPrevista(dataPrevista);
 
         String devolvido = lerTexto("O livro foi devolvido? (S/N): ");
         if (devolvido.equalsIgnoreCase("S")) {
-            LocalDate dataDevolucaoReal = lerData("Informe a data de devolução real (dd/MM/yyyy): ");
-            emprestimo.devolver(dataDevolucaoReal);
+            LocalDate dataDevolucao = lerData("Informe a data de devolução real (dd/MM/yyyy): ");
+            emprestimo.devolver(dataDevolucao);
         } else {
             emprestimo.setDevolvido(Boolean.FALSE);
-            emprestimo.setDataDevolucaoReal(null);
+            emprestimo.setDataDevolucao(null);
+            emprestimo.setStatus("EMPRESTADO");
         }
 
         if (emprestimoService.atualizar(emprestimo)) {
@@ -161,16 +153,56 @@ public final class EmprestimoMenu {
         }
     }
 
+    private void devolverExemplar() {
+        MenuUtil.limparConsole();
+        System.out.println("=== DEVOLVER EXEMPLAR ===");
+
+        Integer id = lerInteiro("Informe o ID do empréstimo: ");
+        LocalDate dataDevolucao = lerData("Informe a data de devolução (dd/MM/yyyy): ");
+
+        if (emprestimoService.devolverExemplar(id, dataDevolucao)) {
+            System.out.println("Exemplar devolvido com sucesso.");
+        } else {
+            System.out.println("Falha ao devolver exemplar.");
+        }
+    }
+
+    private void renovar() {
+        MenuUtil.limparConsole();
+        System.out.println("=== RENOVAR EMPRÉSTIMO ===");
+
+        Integer id = lerInteiro("Informe o ID do empréstimo: ");
+        LocalDate novaDataPrevista = lerData("Informe a nova data prevista de devolução (dd/MM/yyyy): ");
+
+        if (emprestimoService.renovar(id, novaDataPrevista)) {
+            System.out.println("Empréstimo renovado com sucesso.");
+        } else {
+            System.out.println("Falha ao renovar empréstimo.");
+        }
+    }
+
+    private void calcularMultaMenu() {
+        MenuUtil.limparConsole();
+        System.out.println("=== CALCULAR MULTA ===");
+
+        Integer id = lerInteiro("Informe o ID do empréstimo: ");
+        double multa = emprestimoService.calcularMulta(id);
+        System.out.printf("Multa atual: R$ %.2f%n", multa);
+    }
+
     private void imprimirEmprestimo(Emprestimo emprestimo) {
         System.out.println("ID: " + emprestimo.getId());
+        System.out.println("Usuário ID: " + emprestimo.getUsuario().getId());
         System.out.println("Usuário: " + emprestimo.getUsuario().getNome());
+        System.out.println("Exemplar ID: " + emprestimo.getExemplarId());
         System.out.println("ISBN do livro: " + emprestimo.getLivro().getIsbn());
         System.out.println("Título do livro: " + emprestimo.getLivro().getTitulo());
         System.out.println("Data do empréstimo: " + emprestimo.getDataEmprestimo().format(DATE_FORMATTER));
-        System.out.println("Data prevista de devolução: " + emprestimo.getDataDevolucaoPrevista().format(DATE_FORMATTER));
-        if (emprestimo.getDataDevolucaoReal() != null) {
-            System.out.println("Data de devolução real: " + emprestimo.getDataDevolucaoReal().format(DATE_FORMATTER));
+        System.out.println("Data prevista de devolução: " + emprestimo.getDataPrevista().format(DATE_FORMATTER));
+        if (emprestimo.getDataDevolucao() != null) {
+            System.out.println("Data de devolução: " + emprestimo.getDataDevolucao().format(DATE_FORMATTER));
         }
+        System.out.println("Status: " + emprestimo.getStatus());
         System.out.println("Devolvido: " + (emprestimo.getDevolvido() ? "Sim" : "Não"));
     }
 

@@ -32,6 +32,9 @@ public class Emprestimo {
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
+    @Column(name = "exemplar_id", nullable = false)
+    private Integer exemplarId;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "livro_isbn", nullable = false)
     private Livro livro;
@@ -39,18 +42,27 @@ public class Emprestimo {
     @Column(name = "data_emprestimo", nullable = false)
     private LocalDate dataEmprestimo;
 
-    @Column(name = "data_devolucao_prevista", nullable = false)
-    private LocalDate dataDevolucaoPrevista;
+    @Column(name = "data_prevista", nullable = false)
+    private LocalDate dataPrevista;
 
-    @Column(name = "data_devolucao_real")
-    private LocalDate dataDevolucaoReal;
+    @Column(name = "data_devolucao")
+    private LocalDate dataDevolucao;
+
+    @Column(name = "status", nullable = false, length = 20)
+    private String status = "EMPRESTADO";
 
     @Default
     @Column(name = "devolvido", nullable = false)
     private Boolean devolvido = Boolean.FALSE;
 
-    public void devolver(LocalDate dataDevolucaoReal) {
-        this.dataDevolucaoReal = dataDevolucaoReal;
+    public void devolver(LocalDate dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
         this.devolvido = Boolean.TRUE;
+        this.status = "DEVOLVIDO";
+    }
+
+    public void renovar(LocalDate novaDataPrevista) {
+        this.dataPrevista = novaDataPrevista;
+        this.status = "RENOVADO";
     }
 }
