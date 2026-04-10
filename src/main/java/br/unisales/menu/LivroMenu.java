@@ -200,8 +200,8 @@ public final class LivroMenu {
     private void excluir() {
         MenuUtil.limparConsole();
         System.out.println("=== EXCLUIR LIVRO ===");
-        String isbn = this.lerTexto("Informe o ISBN do livro a excluir: ");
-        Livro livro = livroService.buscarPorIsbn(isbn);
+        String titulo = this.lerTexto("Informe o título do livro a excluir: ");
+        Livro livro = livroService.buscarPorTitulo(titulo).stream().findFirst().orElse(null);
         if (livro == null) {
             System.out.println("Livro não encontrado.");
             return;
@@ -210,7 +210,7 @@ public final class LivroMenu {
         exibirDetalhesLivro(livro);
         String confirmacao = this.lerTexto("Tem certeza que deseja excluir este livro? (sim/não): ");
         if (confirmacao.equalsIgnoreCase("sim")) {
-            livroService.deletar(isbn);
+            livroService.deletar(livro.getIsbn());
         } else {
             System.out.println("Exclusão cancelada.");
         }
