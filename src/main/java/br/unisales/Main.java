@@ -16,10 +16,10 @@ public class Main {
     private static Scanner scanner;
 
     public static void main(String[] args) {
-        //MenuUtil.configurarConsoleUtf8();
+        // MenuUtil.configurarConsoleUtf8();
         configurarLogs();
         scanner = new Scanner(System.in, StandardCharsets.UTF_8);
-     
+
         System.out.println("==========================================");
         System.out.println("       BIBLIOTECA       ");
         System.out.println("==========================================");
@@ -33,8 +33,8 @@ public class Main {
                 case 1 -> menuCategoria();
                 case 2 -> menuUsuario();
                 case 3 -> menuLivro();
-                case 4 -> menuEmprestimo();
-                case 5 -> menuAutor();
+                case 4 -> menuAutor();
+                case 5 -> menuEmprestimo();
                 case 0 -> System.out.println("Encerrando o sistema...");
                 default -> System.out.println("Opcao invalida. Tente novamente.");
             }
@@ -59,7 +59,8 @@ public class Main {
         System.out.println("1 - Categoria");
         System.out.println("2 - Usuário");
         System.out.println("3 - Livro");
-        System.out.println("4 - Empréstimo");
+        System.out.println("4 - Autor");
+        System.out.println("5 - Empréstimo");
         System.out.println("0 - Sair");
         System.out.println("-------------------------------------");
     }
@@ -77,6 +78,11 @@ public class Main {
     private static void menuLivro() {
         MenuUtil.limparConsole();
         new LivroMenu(scanner);
+    }
+
+    private static void menuAutor() {
+        MenuUtil.limparConsole();
+        new br.unisales.menu.AutorMenu(scanner);
     }
 
     private static void menuEmprestimo() {

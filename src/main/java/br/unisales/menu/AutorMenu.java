@@ -67,7 +67,7 @@ public final class AutorMenu {
         MenuUtil.limparConsole();
         System.out.println("=== CADASTRAR AUTOR ===");
         String nome = this.lerTexto("Informe o nome: ");
-        Autor item = new Autor(null, nome, null, null, null);
+        Autor item = new Autor(null, nome, null);
         autorService.inserir(item);
     }
 
@@ -107,7 +107,6 @@ public final class AutorMenu {
         System.out.println("Nome: " + item.getNome());
         System.out.println("-------------------------------------");
     }
-
 
     /**
      * Exclui um autor pelo ID.
