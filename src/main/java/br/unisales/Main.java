@@ -34,6 +34,7 @@ public class Main {
                 case 2 -> menuUsuario();
                 case 3 -> menuLivro();
                 case 4 -> menuEmprestimo();
+                case 5 -> menuAutor();
                 case 0 -> System.out.println("Encerrando o sistema...");
                 default -> System.out.println("Opcao invalida. Tente novamente.");
             }
