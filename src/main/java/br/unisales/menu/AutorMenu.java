@@ -3,11 +3,10 @@ package br.unisales.menu;
 import java.util.List;
 import java.util.Scanner;
 
-import br.unisales.Enumeration.UsuarioTipoEnum;
-import br.unisales.database.table.Usuario;
+import br.unisales.database.table.Autor;
 import br.unisales.manager_factory.ManagerFactory;
 import br.unisales.menu.util.MenuUtil;
-import br.unisales.service.UsuarioService;
+import br.unisales.service.AutorService;
 
 public final class AutorMenu {
     private final Scanner scanner;
@@ -28,17 +27,17 @@ public final class AutorMenu {
          * conforme o banco desejado.
          */
         ManagerFactory emf = new ManagerFactory("SQLitePU");
-        UsuarioService usuarioService = new UsuarioService(emf.get());
+        AutorService autorService = new AutorService(emf.get());
         int opcao;
         do {
             exibirMenu();
             opcao = lerInteiro("Escolha uma opção: ");
 
             switch (opcao) {
-                case 1 -> cadastrar(usuarioService);
-                case 2 -> listar(usuarioService);
-                case 3 -> buscarPorId(usuarioService);
-                case 4 -> excluir(usuarioService);
+                case 1 -> cadastrar(autorService);
+                case 2 -> listar(autorService);
+                case 3 -> buscarPorId(autorService);
+                case 4 -> excluir(autorService);
                 case 100 -> System.out.println("Voltando para o menu principal...");
                 default -> System.out.println("Opção inválida. Tente novamente.");
             }
@@ -64,21 +63,21 @@ public final class AutorMenu {
     /**
      * Realiza o cadastro de um novo autor.
      */
-    private void cadastrar(UsuarioService usuarioService) {
+    private void cadastrar(AutorService autorService) {
         MenuUtil.limparConsole();
         System.out.println("=== CADASTRAR AUTOR ===");
         String nome = this.lerTexto("Informe o nome: ");
         Autor item = new Autor(null, nome, null, null, null);
-        usuarioService.inserir(item);
+        autorService.inserir(item);
     }
 
     /**
      * Lista todos os autores cadastrados.
      */
-    private static void listar(UsuarioService usuarioService) {
+    private static void listar(AutorService autorService) {
         MenuUtil.limparConsole();
         System.out.println("=== LISTAR AUTORES ===");
-        List<Autor> lista = usuarioService.listarTodos();
+        List<Autor> lista = autorService.listarTodos();
         if (lista.isEmpty()) {
             System.out.println("Nenhum autor cadastrado.");
             return;
@@ -93,11 +92,11 @@ public final class AutorMenu {
     /**
      * Busca um autor pelo ID.
      */
-    private void buscarPorId(UsuarioService usuarioService) {
+    private void buscarPorId(AutorService autorService) {
         MenuUtil.limparConsole();
         System.out.println("=== BUSCAR AUTOR POR ID ===");
         Integer id = this.lerInteiro("Informe o ID do autor: ");
-        Autor item = usuarioService.buscarPorId(id);
+        Autor item = autorService.buscarPorId(id);
         if (item == null) {
             System.out.println("Autor não encontrado.");
             return;
@@ -106,7 +105,6 @@ public final class AutorMenu {
         System.out.println("-------------------------------------");
         System.out.println("ID: " + item.getId());
         System.out.println("Nome: " + item.getNome());
-        System.out.println("E-mail: " + item.getEmail());
         System.out.println("-------------------------------------");
     }
 
@@ -114,11 +112,11 @@ public final class AutorMenu {
     /**
      * Exclui um autor pelo ID.
      */
-    private void excluir(UsuarioService usuarioService) {
+    private void excluir(AutorService autorService) {
         MenuUtil.limparConsole();
         System.out.println("=== EXCLUIR AUTOR ===");
         Integer id = this.lerInteiro("Informe o ID do autor que será excluído: ");
-        Autor item = usuarioService.buscarPorId(id);
+        Autor item = autorService.buscarPorId(id);
         if (item == null) {
             System.out.println("Autor não encontrado.");
             return;
@@ -127,7 +125,7 @@ public final class AutorMenu {
         System.out.println("Nome: " + item.getNome());
         String confirmacao = this.lerTexto("Deseja realmente excluir este autor? (S/N): ");
         if (confirmacao.equalsIgnoreCase("S")) {
-            usuarioService.deletar(id);
+            autorService.deletar(id);
         } else {
             System.out.println("Exclusão cancelada.");
         }
