@@ -37,6 +37,7 @@ public final class ReservaMenu {
                 case 1 -> cadastrar(reservaService);
                 case 2 -> listar(reservaService);
                 case 3 -> excluir(reservaService);
+                case 4 -> atenderProximaReserva(reservaService);
                 case 100 -> System.out.println("Voltando para o menu principal...");
                 default -> System.out.println("Opção inválida. Tente novamente.");
             }
@@ -52,9 +53,22 @@ public final class ReservaMenu {
         System.out.println("--------------- MENU ----------------");
         System.out.println("1 - Cadastrar reserva");
         System.out.println("2 - Listar reservas");
-        System.out.println("3 - Excluir reserva");
+        System.out.println("3 - Cancelar reserva");
+        System.out.println("4 - Atender próxima reserva");
         System.out.println("100 - Voltar");
         System.out.println("-------------------------------------");
+    }
+
+    /**
+     * Atende a próxima reserva ativa para o livro informado pelo ISBN.
+     */
+    private void atenderProximaReserva(ReservaService reservaService) {
+        MenuUtil.limparConsole();
+        System.out.println("=== ATENDER PRÓXIMA RESERVA ===");
+        String isbnLivro = this.lerTexto("Informe o ISBN do livro: ");
+        if (!reservaService.atenderProximaReserva(isbnLivro)) {
+            System.out.println("Não foi possível atender a próxima reserva para este ISBN.");
+        }
     }
 
     /**

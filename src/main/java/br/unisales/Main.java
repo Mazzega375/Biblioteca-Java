@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import br.unisales.menu.CategoriaMenu;
 import br.unisales.menu.LivroMenu;
 import br.unisales.menu.MultaMenu;
+import br.unisales.menu.RelatorioMenu;
 import br.unisales.menu.ReservaMenu;
 import br.unisales.menu.UsuarioMenu;
 import br.unisales.menu.util.MenuUtil;
@@ -38,6 +39,7 @@ public class Main {
                 case 5 -> menuEmprestimo();
                 case 6 -> menuReserva();
                 case 7 -> menuMulta();
+                case 8 -> menuRelatorio();
                 case 0 -> System.out.println("Encerrando o sistema...");
                 default -> System.out.println("Opcao invalida. Tente novamente.");
             }
@@ -66,6 +68,7 @@ public class Main {
         System.out.println("5 - Empréstimo");
         System.out.println("6 - Reserva");
         System.out.println("7 - Multa");
+        System.out.println("8 - Relatório");
         System.out.println("0 - Sair");
         System.out.println("-------------------------------------");
     }
@@ -103,6 +106,11 @@ public class Main {
     private static void menuMulta() {
         MenuUtil.limparConsole();
         new MultaMenu(scanner);
+    }
+
+    private static void menuRelatorio() {
+        MenuUtil.limparConsole();
+        new RelatorioMenu(scanner);
     }
 
     private static Integer lerInteiro(String mensagem) {

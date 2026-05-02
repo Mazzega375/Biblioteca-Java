@@ -50,7 +50,7 @@ public class RelatorioService {
     /**
      * Retorna empréstimos em atraso (data de devolução prevista passou)
      */
-    public List<Emprestimo> emprestinosEmAtraso() {
+    public List<Emprestimo> emAtraso() {
         EntityManager entityManager = this.entityManagerFactory.createEntityManager();
         try {
             LocalDate hoje = LocalDate.now();
@@ -119,10 +119,10 @@ public class RelatorioService {
     }
 
     /**
-     * Retorna estatísticas de empréstimos por mês
+     * Retorna estatísticas mensais de empréstimos
      * Retorna uma Matriz onde linhas = meses (0-11) e colunas = categorias
      */
-    public Matriz<Integer> estatisticasEmprestimosPorMes() {
+    public Matriz<Integer> estatisticasMensais() {
         EntityManager entityManager = this.entityManagerFactory.createEntityManager();
         try {
             // Quantidade de categorias (simplificado para 10)

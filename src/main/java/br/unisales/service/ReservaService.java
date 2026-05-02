@@ -58,6 +58,63 @@ public class ReservaService {
         }
     }
 
+    public Reserva obterProximaReservaPorIsbn(String isbnLivro) {
+        if (isbnLivro == null || isbnLivro.isBlank()) {
+            return null;
+        }
+
+        EntityManager entityManager = this.entityManagerFactory.createEntityManager();
+        try {
+            return entityManager
+                    .createQuery("SELECT r FROM Reserva r WHERE r.isbnLivro = :isbn AND r.status = 'RESERVADO' ORDER BY r.dataReserva, r.id", Reserva.class)
+                    .setParameter("isbn", isbnLivro)
+                    .setMaxResults(1)
+                    .getSingleResult();
+        } catch (jakarta.persistence.NoResultException e) {
+            return null;
+        } catch (Exception e) {
+            System.out.println("Erro ao buscar próxima reserva: " + e.getMessage());
+            return null;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public boolean atenderProximaReserva(String isbnLivro) {
+        if (isbnLivro == null || isbnLivro.isBlank()) {
+            System.out.println("ISBN inválido.");
+            return false;
+        }
+
+        EntityManager entityManager = this.entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            Reserva reserva = entityManager
+                    .createQuery("SELECT r FROM Reserva r WHERE r.isbnLivro = :isbn AND r.status = 'RESERVADO' ORDER BY r.dataReserva, r.id", Reserva.class)
+                    .setParameter("isbn", isbnLivro)
+                    .setMaxResults(1)
+                    .getSingleResult();
+
+            transaction.begin();
+            reserva.setStatus("ATENDIDA");
+            entityManager.merge(reserva);
+            transaction.commit();
+            System.out.println("Próxima reserva atendida com sucesso. Reserva ID: " + reserva.getId());
+            return true;
+        } catch (jakarta.persistence.NoResultException e) {
+            System.out.println("Não há reservas pendentes para o ISBN informado.");
+            return false;
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.out.println("Erro ao atender próxima reserva: " + e.getMessage());
+            return false;
+        } finally {
+            entityManager.close();
+        }
+    }
+
     public void deletar(Integer id) {
         EntityManager entityManager = this.entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
