@@ -37,9 +37,7 @@ public final class UsuarioMenu {
             switch (opcao) {
                 case 1 -> cadastrar(usuarioService);
                 case 2 -> listar(usuarioService);
-                case 3 -> buscarPorId(usuarioService);
-                case 4 -> atualizar(usuarioService);
-                case 5 -> excluir(usuarioService);
+                case 3 -> bloquearDesbloquear(usuarioService);
                 case 100 -> System.out.println("Voltando para o menu principal...");
                 default -> System.out.println("Opção inválida. Tente novamente.");
             }
@@ -55,9 +53,7 @@ public final class UsuarioMenu {
         System.out.println("--------------- MENU ----------------");
         System.out.println("1 - Cadastrar usuário");
         System.out.println("2 - Listar usuários");
-        System.out.println("3 - Buscar usuário por ID");
-        System.out.println("4 - Atualizar usuário");
-        System.out.println("5 - Excluir usuário");
+        System.out.println("3 - Bloquear/Desbloquear usuário");
         System.out.println("100 - Voltar");
         System.out.println("-------------------------------------");
     }
@@ -97,73 +93,45 @@ public final class UsuarioMenu {
             System.out.println("ID: " + item.getId());
             System.out.println("Nome: " + item.getNome());
             System.out.println("E-mail: " + item.getEmail());
+            System.out.println("Bloqueado: " + (Boolean.TRUE.equals(item.getBloqueado()) ? "Sim" : "Não"));
         }
         System.out.println("-------------------------------------");
     }
 
+
     /**
-     * Busca um usuário pelo ID.
+     * Bloqueia ou desbloqueia um usuário pelo ID.
      */
-    private void buscarPorId(UsuarioService usuarioService) {
+    private void bloquearDesbloquear(UsuarioService usuarioService) {
         MenuUtil.limparConsole();
-        System.out.println("=== BUSCAR USUÁRIO POR ID ===");
+        System.out.println("=== BLOQUEAR / DESBLOQUEAR USUÁRIO ===");
         Integer id = this.lerInteiro("Informe o ID do usuário: ");
         Usuario item = usuarioService.buscarPorId(id);
         if (item == null) {
             System.out.println("Usuário não encontrado.");
             return;
         }
-        System.out.println("Usuário encontrado:");
-        System.out.println("-------------------------------------");
-        System.out.println("ID: " + item.getId());
-        System.out.println("Nome: " + item.getNome());
-        System.out.println("E-mail: " + item.getEmail());
-        System.out.println("-------------------------------------");
-    }
 
-    /**
-     * Atualiza os dados de um usuário existente.
-     */
-    private void atualizar(UsuarioService usuarioService) {
-        MenuUtil.limparConsole();
-        System.out.println("=== ATUALIZAR USUÁRIO ===");
-        Integer id = this.lerInteiro("Informe o ID do usuário que será atualizado: ");
-        Usuario item = usuarioService.buscarPorId(id);
-        if (item == null) {
-            System.out.println("Usuário não encontrado.");
-            return;
-        }
-        System.out.println("Dados atuais do usuário:");
-        System.out.println("Nome: " + item.getNome());
-        System.out.println("E-mail: " + item.getEmail());
-        String novoNome = this.lerTexto("Informe o novo nome: ");
-        String novoEmail = this.lerTexto("Informe o novo e-mail: ");
-        item.setNome(novoNome);
-        item.setEmail(novoEmail);
-        usuarioService.atualizar(item);
-    }
-
-    /**
-     * Exclui um usuário pelo ID.
-     */
-    private void excluir(UsuarioService usuarioService) {
-        MenuUtil.limparConsole();
-        System.out.println("=== EXCLUIR USUÁRIO ===");
-        Integer id = this.lerInteiro("Informe o ID do usuário que será excluído: ");
-        Usuario item = usuarioService.buscarPorId(id);
-        if (item == null) {
-            System.out.println("Usuário não encontrado.");
-            return;
-        }
         System.out.println("Usuário localizado:");
         System.out.println("ID: " + item.getId());
         System.out.println("Nome: " + item.getNome());
         System.out.println("E-mail: " + item.getEmail());
-        String confirmacao = this.lerTexto("Deseja realmente excluir este usuário? (S/N): ");
-        if (confirmacao.equalsIgnoreCase("S")) {
-            usuarioService.deletar(id);
+        System.out.println("Bloqueado: " + (Boolean.TRUE.equals(item.getBloqueado()) ? "Sim" : "Não"));
+
+        if (Boolean.TRUE.equals(item.getBloqueado())) {
+            String confirmacao = this.lerTexto("Deseja desbloquear este usuário? (S/N): ");
+            if (confirmacao.equalsIgnoreCase("S")) {
+                usuarioService.desbloquear(id);
+            } else {
+                System.out.println("Operação cancelada.");
+            }
         } else {
-            System.out.println("Exclusão cancelada.");
+            String confirmacao = this.lerTexto("Deseja bloquear este usuário? (S/N): ");
+            if (confirmacao.equalsIgnoreCase("S")) {
+                usuarioService.bloquear(id);
+            } else {
+                System.out.println("Operação cancelada.");
+            }
         }
     }
 

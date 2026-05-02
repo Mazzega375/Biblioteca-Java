@@ -51,7 +51,7 @@ public final class ReservaMenu {
      */
     private static void exibirMenu() {
         System.out.println("--------------- MENU ----------------");
-        System.out.println("1 - Cadastrar reserva");
+        System.out.println("1 - Reservar livro");
         System.out.println("2 - Listar reservas");
         System.out.println("3 - Cancelar reserva");
         System.out.println("4 - Atender próxima reserva");
@@ -106,13 +106,13 @@ public final class ReservaMenu {
     }
 
     /**
-     * Exclui uma reserva pelo ID.
+     * Cancela uma reserva pelo ID.
      */
     private void excluir(ReservaService reservaService) {
         MenuUtil.limparConsole();
-        System.out.println("=== EXCLUIR RESERVA ===");
-        Integer id = this.lerInteiro("Informe o ID da reserva que será excluída: ");
-        String confirmacao = this.lerTexto("Deseja realmente excluir esta reserva? (S/N): ");
+        System.out.println("=== CANCELAR RESERVA ===");
+        Integer id = this.lerInteiro("Informe o ID da reserva que será cancelada: ");
+        String confirmacao = this.lerTexto("Deseja realmente cancelar esta reserva? (S/N): ");
         if (confirmacao.equalsIgnoreCase("S")) {
             reservaService.deletar(id);
         } else {

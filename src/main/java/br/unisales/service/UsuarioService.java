@@ -86,6 +86,40 @@ public class UsuarioService {
         }
     }
 
+    public boolean bloquear(Integer id) {
+        return alterarBloqueio(id, true, "bloqueado");
+    }
+
+    public boolean desbloquear(Integer id) {
+        return alterarBloqueio(id, false, "desbloqueado");
+    }
+
+    private boolean alterarBloqueio(Integer id, boolean bloqueado, String acao) {
+        EntityManager entityManager = this.entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            Usuario usuario = entityManager.find(Usuario.class, id);
+            if (usuario == null) {
+                System.out.println("Usuario nao encontrado.");
+                return false;
+            }
+            transaction.begin();
+            usuario.setBloqueado(bloqueado);
+            entityManager.merge(usuario);
+            transaction.commit();
+            System.out.println("Usuario " + acao + " com sucesso.");
+            return true;
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.out.println("Erro ao alterar bloqueio do usuario: " + e.getMessage());
+            return false;
+        } finally {
+            entityManager.close();
+        }
+    }
+
     public void deletar(Integer id) {
         EntityManager entityManager = this.entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();

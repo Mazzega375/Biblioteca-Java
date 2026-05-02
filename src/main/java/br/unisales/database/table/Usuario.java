@@ -27,6 +27,9 @@ public class Usuario {
     @Column(nullable = false, length = 8)
     private String senha;
 
+    @Column(name = "bloqueado", nullable = false)
+    private Boolean bloqueado = Boolean.FALSE;
+
     public Usuario() {
     }
 
@@ -76,5 +79,13 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Boolean getBloqueado() {
+        return bloqueado;
+    }
+
+    public void setBloqueado(Boolean bloqueado) {
+        this.bloqueado = bloqueado;
     }
 }

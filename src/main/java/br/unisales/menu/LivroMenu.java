@@ -42,10 +42,8 @@ public final class LivroMenu {
             switch (opcao) {
                 case 1 -> cadastrar();
                 case 2 -> listar();
-                case 3 -> buscarPorIsbn();
-                case 4 -> buscarPorTitulo();
-                case 5 -> atualizar();
-                case 6 -> excluir();
+                case 3 -> buscarPorTitulo();
+                case 4 -> excluir();
                 case 100 -> System.out.println("Voltando para o menu principal...");
                 default -> System.out.println("Opção inválida. Tente novamente.");
             }
@@ -61,10 +59,8 @@ public final class LivroMenu {
         System.out.println("--------------- MENU ----------------");
         System.out.println("1 - Cadastrar livro");
         System.out.println("2 - Listar livros");
-        System.out.println("3 - Buscar livro por ISBN");
-        System.out.println("4 - Buscar livro por título");
-        System.out.println("5 - Atualizar livro");
-        System.out.println("6 - Excluir livro");
+        System.out.println("3 - Buscar livro por título");
+        System.out.println("4 - Remover livro");
         System.out.println("100 - Voltar");
         System.out.println("-------------------------------------");
     }
@@ -125,20 +121,6 @@ public final class LivroMenu {
         System.out.println("-------------------------------------");
     }
 
-    /**
-     * Busca um livro pelo ISBN.
-     */
-    private void buscarPorIsbn() {
-        MenuUtil.limparConsole();
-        System.out.println("=== BUSCAR LIVRO POR ISBN ===");
-        String isbn = this.lerTexto("Informe o ISBN do livro: ");
-        Livro livro = livroService.buscarPorIsbn(isbn);
-        if (livro == null) {
-            System.out.println("Livro não encontrado.");
-            return;
-        }
-        exibirDetalhesLivro(livro);
-    }
 
     /**
      * Busca livros por título.
@@ -157,50 +139,6 @@ public final class LivroMenu {
         }
     }
 
-    /**
-     * Atualiza os dados de um livro existente.
-     */
-    private void atualizar() {
-        MenuUtil.limparConsole();
-        System.out.println("=== ATUALIZAR LIVRO ===");
-        String isbn = this.lerTexto("Informe o ISBN do livro a atualizar: ");
-        Livro livro = livroService.buscarPorIsbn(isbn);
-        if (livro == null) {
-            System.out.println("Livro não encontrado.");
-            return;
-        }
-
-        System.out.println("Dados atuais do livro:");
-        exibirDetalhesLivro(livro);
-
-        String titulo = this.lerTexto("Novo título (pressione Enter para manter atual): ");
-        if (!titulo.isEmpty()) {
-            livro.setTitulo(titulo);
-        }
-
-        String anoStr = this.lerTexto("Novo ano (pressione Enter para manter atual): ");
-        if (!anoStr.isEmpty()) {
-            try {
-                livro.setAno(Integer.parseInt(anoStr));
-            } catch (NumberFormatException e) {
-                System.out.println("Ano inválido. Mantendo o valor atual.");
-            }
-        }
-
-        String modificarPalavras = this.lerTexto("Deseja modificar palavras-chave? (sim/não): ");
-        if (modificarPalavras.equalsIgnoreCase("sim")) {
-            livro.getPalavrasChave().clear();
-            adicionarPalavrasChave(livro);
-        }
-
-        String modificarAutores = this.lerTexto("Deseja modificar autores? (sim/não): ");
-        if (modificarAutores.equalsIgnoreCase("sim")) {
-            livro.getLivroAutores().clear();
-            adicionarAutores(livro);
-        }
-
-        livroService.atualizar(livro);
-    }
 
     /**
      * Exclui um livro do banco de dados.
