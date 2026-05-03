@@ -20,7 +20,7 @@ public final class EmprestimoMenu {
     public EmprestimoMenu(Scanner scanner) {
         this.scanner = scanner;
         System.out.println("==========================================");
-        System.out.println("       EMPRÉSTIMO       ");
+        System.out.println("       EMPRESTIMO MENU       ");
         System.out.println("==========================================");
 
         ManagerFactory emf = new ManagerFactory("SQLitePU");
@@ -46,7 +46,7 @@ public final class EmprestimoMenu {
     }
 
     private static void exibirMenu() {
-        System.out.println("--------------- MENU ----------------");
+        System.out.println("--------------- EMPRESTIMO MENU ----------------");
         System.out.println("1 - Emprestar exemplar");
         System.out.println("2 - Devolver exemplar");
         System.out.println("3 - Renovar empréstimo");

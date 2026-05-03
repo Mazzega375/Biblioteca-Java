@@ -14,7 +14,7 @@ public final class AutorMenu {
     public AutorMenu(Scanner scanner) {
         this.scanner = scanner;
         System.out.println("==========================================");
-        System.out.println("    AUTOR     ");
+        System.out.println("    AUTOR MENU     ");
         System.out.println("==========================================");
         /*
          * Cria a fábrica de EntityManager com base na persistence-unit
@@ -48,7 +48,7 @@ public final class AutorMenu {
      * Exibe o menu principal do sistema.
      */
     private static void exibirMenu() {
-        System.out.println("--------------- MENU ----------------");
+        System.out.println("--------------- AUTORMENU ----------------");
         System.out.println("1 - Cadastrar autor");
         System.out.println("2 - Listar autores");
         System.out.println("100 - Voltar");

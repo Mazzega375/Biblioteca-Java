@@ -62,7 +62,7 @@ public class Main {
     }
 
     private static void exibirMenu() {
-        System.out.println("--------------- MENU ----------------");
+        System.out.println("--------------- BIBLIOTECA MENU ----------------");
         System.out.println("1 - Usuário");
         System.out.println("2 - Livro");
         System.out.println("3 - Autor");

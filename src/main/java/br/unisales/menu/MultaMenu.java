@@ -15,7 +15,7 @@ public final class MultaMenu {
     public MultaMenu(Scanner scanner) {
         this.scanner = scanner;
         System.out.println("==========================================");
-        System.out.println("         MULTAS         ");
+        System.out.println("         MULTA MENU         ");
         System.out.println("==========================================");
 
         ManagerFactory emf = new ManagerFactory("SQLitePU");
@@ -41,7 +41,7 @@ public final class MultaMenu {
     }
 
     private static void exibirMenu() {
-        System.out.println("--------------- MENU ----------------");
+        System.out.println("--------------- MULTA MENU ----------------");
         System.out.println("1 - Listar multas");
         System.out.println("2 - Listar multas pendentes");
         System.out.println("3 - Buscar multa por empréstimo");

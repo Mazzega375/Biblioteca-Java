@@ -15,7 +15,7 @@ public final class UsuarioMenu {
     public UsuarioMenu(Scanner scanner) {
         this.scanner = scanner;
         System.out.println("==========================================");
-        System.out.println("    USUÁRIO     ");
+        System.out.println("    USUÁRIO MENU     ");
         System.out.println("==========================================");
         /*
          * Cria a fábrica de EntityManager com base na persistence-unit
@@ -50,7 +50,7 @@ public final class UsuarioMenu {
      * Exibe o menu principal do sistema.
      */
     private static void exibirMenu() {
-        System.out.println("--------------- MENU ----------------");
+        System.out.println("--------------- USUÁRIO MENU ----------------");
         System.out.println("1 - Cadastrar usuário");
         System.out.println("2 - Listar usuários");
         System.out.println("3 - Bloquear/Desbloquear usuário");

@@ -14,7 +14,7 @@ public final class CategoriaMenu {
     public CategoriaMenu(Scanner scanner) {
         this.scanner = scanner;
         System.out.println("==========================================");
-        System.out.println("   CATEGORIA     ");
+        System.out.println("   CATEGORIA MENU     ");
         System.out.println("==========================================");
         /*
          * Cria a fábrica de EntityManager com base na persistence-unit
@@ -49,7 +49,7 @@ public final class CategoriaMenu {
      * Exibe o menu principal do sistema.
      */
     private static void exibirMenu() {
-        System.out.println("--------------- MENU ----------------");
+        System.out.println("--------------- CATEGORIA MENU ----------------");
         System.out.println("1 - Cadastrar categoria");
         System.out.println("2 - Listar categorias");
         System.out.println("3 - Excluir categoria");
