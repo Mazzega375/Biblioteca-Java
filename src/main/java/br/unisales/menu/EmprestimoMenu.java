@@ -56,21 +56,21 @@ public final class EmprestimoMenu {
         System.out.println("-------------------------------------");
     }
 
-    private void emprestarExemplar() {
-        MenuUtil.limparConsole();
-        System.out.println("=== EMPRESTAR EXEMPLAR ===");
+   private void emprestarExemplar() {
+    MenuUtil.limparConsole();
+    System.out.println("=== EMPRESTAR EXEMPLAR ===");
 
-        Integer usuarioId = lerInteiro("Informe o ID do usuário: ");
-        Integer exemplarId = lerInteiro("Informe o ID do exemplar: ");
-        String título = lerTexto("Informe o título do livro: ");
-        LocalDate dataPrevista = lerData("Informe a data prevista de devolução (dd/MM/yyyy): ");
+    Integer usuarioId = lerInteiro("Informe o ID do usuário: ");
+    Integer exemplarId = lerInteiro("Informe o ID do exemplar: ");
+    String isbn = lerTexto("Informe o ISBN do livro: ");
+    LocalDate dataPrevista = lerData("Informe a data prevista de devolução (dd/MM/yyyy): ");
 
-        if (emprestimoService.emprestarExemplar(usuarioId, exemplarId, título, dataPrevista)) {
-            System.out.println("Empréstimo registrado com sucesso.");
-        } else {
-            System.out.println("Falha ao registrar empréstimo. Verifique os dados informados.");
-        }
+    if (emprestimoService.emprestarExemplar(usuarioId, exemplarId, isbn, dataPrevista)) {
+        System.out.println("Empréstimo registrado com sucesso.");
+    } else {
+        System.out.println("Falha ao registrar empréstimo. Verifique os dados informados.");
     }
+}
 
     private void listar() {
         MenuUtil.limparConsole();
