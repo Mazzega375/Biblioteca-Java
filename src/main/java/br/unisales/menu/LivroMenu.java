@@ -71,7 +71,7 @@ public final class LivroMenu {
     private void cadastrar() {
         MenuUtil.limparConsole();
         System.out.println("=== CADASTRAR LIVRO ===");
-        String isbn = this.lerTexto("Informe o ISBN: ");
+        String isbn;
         while (true) {
             System.out.print("Digite o ISBN (13 dígitos): ");
             isbn = scanner.nextLine().trim();

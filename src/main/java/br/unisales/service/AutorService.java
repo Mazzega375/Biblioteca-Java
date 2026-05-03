@@ -110,4 +110,27 @@ public class AutorService {
             em.close();
         }
     }
+    
+
+public Autor buscarPorId(Integer id) {
+    EntityManager entityManager = this.entityManagerFactory.createEntityManager();
+    try {
+        Autor autor = entityManager.find(Autor.class, id);
+        if (autor == null) {
+            System.out.println("Autor não encontrado.");
+            return null;
+        }
+        // Força o carregamento da coleção lazy ANTES de fechar a sessão
+        if (autor.getLivroAutores() != null) {
+            autor.getLivroAutores().size();
+        }
+        return autor;
+    } catch (Exception e) {
+        System.out.println("Erro ao buscar autor: " + e.getMessage());
+        return null;
+    } finally {
+        entityManager.close();
+    }
+}
+
 }
