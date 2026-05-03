@@ -21,7 +21,6 @@ public final class NotificacaoMenu {
         ManagerFactory emf = new ManagerFactory("SQLitePU");
         NotificacaoService notificacaoService = new NotificacaoService(emf.get());
 
-        // Gera automaticamente notificacoes de reservas atendidas ao entrar no menu
         System.out.println("Verificando reservas atendidas...");
         notificacaoService.gerarNotificacoesDeReservasAtendidas();
 

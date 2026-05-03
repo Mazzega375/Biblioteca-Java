@@ -17,11 +17,6 @@ public class NotificacaoService {
         this.entityManagerFactory = entityManagerFactory;
     }
 
-    /**
-     * Verifica reservas com status ATENDIDA e gera notificacoes automaticas
-     * para os usuarios cujos livros reservados estao disponiveis.
-     * Evita duplicatas verificando se ja existe notificacao para aquela reserva.
-     */
     public void gerarNotificacoesDeReservasAtendidas() {
         EntityManager entityManager = this.entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
