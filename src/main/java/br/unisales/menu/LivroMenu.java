@@ -72,9 +72,16 @@ public final class LivroMenu {
         MenuUtil.limparConsole();
         System.out.println("=== CADASTRAR LIVRO ===");
         String isbn = this.lerTexto("Informe o ISBN: ");
-        if (!isbn.matches("\\d{13}")) {
-    throw new IllegalArgumentException("ISBN deve conter exatamente 13 dígitos numéricos.");
-}
+        while (true) {
+            System.out.print("Digite o ISBN (13 dígitos): ");
+            isbn = scanner.nextLine().trim();
+
+            if (isbn.matches("\\d{13}")) {
+                break; // ISBN válido, sai do loop
+            } else {
+                System.out.println("ISBN inválido! Digite exatamente 13 dígitos numéricos. Tente novamente.");
+            }
+        }
 
         String titulo = this.lerTexto("Informe o título: ");
         Integer ano = this.lerInteiro("Informe o ano de publicação: ");
@@ -121,7 +128,6 @@ public final class LivroMenu {
         System.out.println("-------------------------------------");
     }
 
-
     /**
      * Busca livros por título.
      */
@@ -138,7 +144,6 @@ public final class LivroMenu {
             exibirDetalhesLivro(livro);
         }
     }
-
 
     /**
      * Exclui um livro do banco de dados.
@@ -182,7 +187,7 @@ public final class LivroMenu {
      */
     private void adicionarAutores(Livro livro) {
         List<Autor> autoresDisponiveis = livroService.listarTodosAutores();
-        
+
         if (autoresDisponiveis.isEmpty()) {
             System.out.println("Não há autores cadastrados no sistema.");
             return;
@@ -198,7 +203,7 @@ public final class LivroMenu {
 
             Integer autorId = this.lerInteiro("Informe o ID do autor: ");
             Autor autor = livroService.buscarAutorPorId(autorId);
-            
+
             if (autor != null) {
                 livro.addAutor(autor);
                 System.out.println("Autor adicionado ao livro.");
@@ -218,7 +223,7 @@ public final class LivroMenu {
         System.out.println("ISBN: " + livro.getIsbn());
         System.out.println("Título: " + livro.getTitulo());
         System.out.println("Ano: " + livro.getAno());
-        
+
         // Buscar e exibir exemplares
         List<Exemplar> exemplares = livroService.listarExemplaresPorLivro(livro.getIsbn());
         if (!exemplares.isEmpty()) {
@@ -233,11 +238,11 @@ public final class LivroMenu {
         } else {
             System.out.println("Nenhum exemplar cadastrado.");
         }
-        
+
         if (!livro.getPalavrasChave().isEmpty()) {
             System.out.println("Palavras-chave: " + String.join(", ", livro.getPalavrasChave()));
         }
-        
+
         if (!livro.getLivroAutores().isEmpty()) {
             System.out.println("Autores:");
             for (var la : livro.getLivroAutores()) {
@@ -270,4 +275,3 @@ public final class LivroMenu {
         }
     }
 }
-
