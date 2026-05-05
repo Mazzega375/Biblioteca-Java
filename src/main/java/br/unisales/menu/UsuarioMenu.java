@@ -93,6 +93,7 @@ public final class UsuarioMenu {
             System.out.println("ID: " + item.getId());
             System.out.println("Nome: " + item.getNome());
             System.out.println("E-mail: " + item.getEmail());
+            System.out.println("Tipo: " + item.getTipo());
             System.out.println("Bloqueado: " + (Boolean.TRUE.equals(item.getBloqueado()) ? "Sim" : "Não"));
         }
         System.out.println("-------------------------------------");
