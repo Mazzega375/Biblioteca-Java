@@ -20,11 +20,6 @@ public final class CategoriaMenu {
          * Cria a fábrica de EntityManager com base na persistence-unit
          * definida no arquivo persistence.xml.
          *
-         * Troque "SQLitePU" por:
-         * - "MySQLPU"
-         * - "PostgresPU"
-         * - "SqlServerPU"
-         * conforme o banco desejado.
          */
         ManagerFactory emf = new ManagerFactory("SQLitePU");
         CategoriaService categoriaService = new CategoriaService(emf.get());
@@ -49,7 +44,7 @@ public final class CategoriaMenu {
      * Exibe o menu principal do sistema.
      */
     private static void exibirMenu() {
-        
+
         System.out.println("1 - Cadastrar categoria");
         System.out.println("2 - Listar categorias");
         System.out.println("3 - Excluir categoria");

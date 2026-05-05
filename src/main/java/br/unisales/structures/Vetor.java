@@ -1,7 +1,6 @@
 package br.unisales.structures;
 
 /**
- * Implementação genérica de um Vetor dinâmico (similar ao ArrayList)
  * Armazena elementos com capacidade que cresce conforme necessário
  * 
  * @param <T> o tipo dos elementos armazenados

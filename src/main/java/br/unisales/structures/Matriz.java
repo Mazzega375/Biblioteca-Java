@@ -1,8 +1,7 @@
 package br.unisales.structures;
 
 /**
- * Implementação genérica de uma Matriz bidimensional
- * Útil para armazenar estatísticas por múltiplas dimensões (ex: mês x
+ * Para armazenar estatísticas por múltiplas dimensões (ex: mês x
  * categoria)
  * 
  * @param <T> o tipo dos elementos armazenados

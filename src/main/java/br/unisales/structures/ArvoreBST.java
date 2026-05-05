@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Implementação de uma Árvore Binária de Busca genérica
- * Permite buscas rápidas por chave (O(log n) em média)
- * Útil para indexar livros por ISBN ou título
+ * Para indexar livros por ISBN ou título
  * 
  * @param <K> o tipo das chaves (deve ser Comparable)
  * @param <V> o tipo dos valores

@@ -16,16 +16,8 @@ public final class AutorMenu {
         System.out.println("==========================================");
         System.out.println("    AUTOR MENU     ");
         System.out.println("==========================================");
-        /*
-         * Cria a fábrica de EntityManager com base na persistence-unit
-         * definida no arquivo persistence.xml.
-         *
-         * Troque "SQLitePU" por:
-         * - "MySQLPU"
-         * - "PostgresPU"
-         * - "SqlServerPU"
-         * conforme o banco desejado.
-         */
+        
+        
         ManagerFactory emf = new ManagerFactory("SQLitePU");
         AutorService autorService = new AutorService(emf.get());
         int opcao;

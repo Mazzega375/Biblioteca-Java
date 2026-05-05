@@ -8,8 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Implementação de um Grafo genérico usando lista de adjacência
- * Útil para recomendações entre livros
+ * Para recomendações entre livros
  * 
  * @param <T> o tipo dos vértices (deve ser comparável/hashable)
  */

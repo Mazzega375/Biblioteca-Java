@@ -60,8 +60,6 @@ public class Livro {
     /**
      * @apiNote Adiciona uma categoria ao livro para ser salva no banco de dados
      * @param categoria
-     * @author Vito Rodrigues Franzosi
-     * @Data Criação 19.03.2026
      */
     public void addCategoria(Categoria categoria) {
         LivroCategoria lc = new LivroCategoria();
@@ -77,8 +75,6 @@ public class Livro {
     /**
      * @apiNote Remove uma categoria do livro para ser excluída do banco de dados
      * @param categoria
-     * @author Vito Rodrigues Franzosi
-     * @Data Criação 19.03.2026
      */
     public void removeCategoria(Categoria categoria) {
         livroCategorias.removeIf(lc -> {
@@ -95,8 +91,6 @@ public class Livro {
     /**
      * @apiNote Adiciona um autor ao livro para ser salvo no banco de dados
      * @param autor
-     * @author Vito Rodrigues Franzosi
-     * @Data Criação 10.04.2026
      */
     public void addAutor(Autor autor) {
         LivroAutor la = new LivroAutor();
@@ -112,8 +106,6 @@ public class Livro {
     /**
      * @apiNote Remove um autor do livro para ser excluído do banco de dados
      * @param autor
-     * @author Vito Rodrigues Franzosi
-     * @Data Criação 10.04.2026
      */
     public void removeAutor(Autor autor) {
         livroAutores.removeIf(la -> {

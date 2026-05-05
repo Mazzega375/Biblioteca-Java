@@ -1,9 +1,8 @@
 package br.unisales.structures;
 
 /**
- * Implementação genérica de uma Fila (Queue)
  * Estrutura FIFO (First In, First Out)
- * Útil para controle de reservas e filas de espera
+ * Para controle de reservas e filas de espera
  * 
  * @param <T> o tipo dos elementos armazenados
  */

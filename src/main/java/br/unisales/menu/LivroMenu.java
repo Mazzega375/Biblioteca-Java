@@ -25,12 +25,6 @@ public final class LivroMenu {
         /*
          * Cria a fábrica de EntityManager com base na persistence-unit
          * definida no arquivo persistence.xml.
-         *
-         * Troque "SQLitePU" por:
-         * - "MySQLPU"
-         * - "PostgresPU"
-         * - "SqlServerPU"
-         * conforme o banco desejado.
          */
         ManagerFactory emf = new ManagerFactory("SQLitePU");
         this.livroService = new LivroService(emf.get());

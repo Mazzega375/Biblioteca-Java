@@ -12,11 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Serviço de Relatórios para análises e estatísticas da Biblioteca
- * Fornece métodos para gerar relatórios sobre empréstimos, multas, usuários,
- * etc.
- */
+
 public class RelatorioService {
 
     private final EntityManagerFactory entityManagerFactory;

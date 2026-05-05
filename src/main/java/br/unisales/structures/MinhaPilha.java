@@ -1,9 +1,8 @@
 package br.unisales.structures;
 
 /**
- * Implementação genérica de uma Pilha (Stack)
  * Estrutura LIFO (Last In, First Out)
- * Útil para histórico de operações, desfazer/refazer
+ * Para histórico de operações, desfazer/refazer
  * 
  * @param <T> o tipo dos elementos armazenados
  */
