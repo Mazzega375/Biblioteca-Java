@@ -87,20 +87,20 @@ public final class LivroMenu {
         livro.setAno(ano);
 
         // Adicionar palavras-chave (opcional)
-        String adicionarPalavras = this.lerTexto("Deseja adicionar palavras-chave? (sim/não): ");
-        if (adicionarPalavras.equalsIgnoreCase("sim")) {
+        String adicionarPalavras = this.lerTexto("Deseja adicionar palavras-chave? (S/N): ");
+        if (adicionarPalavras.equalsIgnoreCase("S")) {
             adicionarPalavrasChave(livro);
         }
 
         // Adicionar autores (opcional)
-        String adicionarAutores = this.lerTexto("Deseja adicionar um autor? (sim/não): ");
-        if (adicionarAutores.equalsIgnoreCase("sim")) {
+        String adicionarAutores = this.lerTexto("Deseja adicionar um autor? (S/N): ");
+        if (adicionarAutores.equalsIgnoreCase("S")) {
             adicionarAutores(livro);
         }
 
         // Adicionar categorias (opcional)
-        String adicionarCategorias = this.lerTexto("Deseja adicionar uma categoria? (sim/não): ");
-        if (adicionarCategorias.equalsIgnoreCase("sim")) {
+        String adicionarCategorias = this.lerTexto("Deseja adicionar uma categoria? (S/N): ");
+        if (adicionarCategorias.equalsIgnoreCase("S")) {
             adicionarCategorias(livro);
         }
 
@@ -160,8 +160,8 @@ public final class LivroMenu {
         }
 
         exibirDetalhesLivro(livro);
-        String confirmacao = this.lerTexto("Tem certeza que deseja excluir este livro? (sim/não): ");
-        if (confirmacao.equalsIgnoreCase("sim")) {
+        String confirmacao = this.lerTexto("Tem certeza que deseja excluir este livro? (S/N): ");
+        if (confirmacao.equalsIgnoreCase("S")) {
             livroService.deletar(livro.getIsbn());
         } else {
             System.out.println("Exclusão cancelada.");
@@ -172,14 +172,14 @@ public final class LivroMenu {
      * Adiciona palavras-chave ao livro.
      */
     private void adicionarPalavrasChave(Livro livro) {
-        String adicionarMais = "sim";
-        while (adicionarMais.equalsIgnoreCase("sim")) {
+        String adicionarMais = "S";
+        while (adicionarMais.equalsIgnoreCase("S")) {
             String palavra = this.lerTexto("Informe uma palavra-chave: ");
             if (!palavra.isEmpty()) {
                 livro.getPalavrasChave().add(palavra);
                 System.out.println("Palavra-chave adicionada.");
             }
-            adicionarMais = this.lerTexto("Deseja adicionar mais palavras-chave? (sim/não): ");
+            adicionarMais = this.lerTexto("Deseja adicionar mais palavras-chave? (S/N): ");
         }
     }
 
@@ -194,8 +194,8 @@ public final class LivroMenu {
             return;
         }
 
-        String adicionarMais = "sim";
-        while (adicionarMais.equalsIgnoreCase("sim")) {
+        String adicionarMais = "S";
+        while (adicionarMais.equalsIgnoreCase("S")) {
             System.out.println("\n--- Autores disponíveis ---");
             for (Autor autor : autoresDisponiveis) {
                 System.out.println("ID: " + autor.getId() + " - Nome: " + autor.getNome());
@@ -212,7 +212,7 @@ public final class LivroMenu {
                 System.out.println("Autor não encontrado.");
             }
 
-            adicionarMais = this.lerTexto("Deseja adicionar mais autores? (sim/não): ");
+            adicionarMais = this.lerTexto("Deseja adicionar mais autores? (S/N): ");
         }
     }
 
@@ -227,8 +227,8 @@ public final class LivroMenu {
             return;
         }
 
-        String adicionarMais = "sim";
-        while (adicionarMais.equalsIgnoreCase("sim")) {
+        String adicionarMais = "S";
+        while (adicionarMais.equalsIgnoreCase("S")) {
             System.out.println("\n--- Categorias disponíveis ---");
             for (Categoria categoria : categoriasDisponiveis) {
                 System.out.println("ID: " + categoria.getId() + " - Nome: " + categoria.getNome());
@@ -245,7 +245,7 @@ public final class LivroMenu {
                 System.out.println("Categoria não encontrada.");
             }
 
-            adicionarMais = this.lerTexto("Deseja adicionar mais categorias? (sim/não): ");
+            adicionarMais = this.lerTexto("Deseja adicionar mais categorias? (S/N): ");
         }
     }
 
