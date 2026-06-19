@@ -1,2 +1,2 @@
 # Biblioteca-Java
-# Integrantes: Luiz Miguel Mazzega Lamas, Deivid Ramos, Ester Soares Serafim
+# Integrantes: Luiz Miguel Mazzega Lamas, Arthur Ribeiro, Alice Martins, Eduardo Augusto 
