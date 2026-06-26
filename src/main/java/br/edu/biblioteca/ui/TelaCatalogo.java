@@ -25,20 +25,19 @@ public class TelaCatalogo {
     public void exibir() {
         boolean sair = false;
         while (!sair) {
-            System.out.println("\n╔══════════════════════════════╗");
-            System.out.println("║       CATÁLOGO DE LIVROS     ║");
-            System.out.println("╠══════════════════════════════╣");
-            System.out.println("║  1. Cadastrar livro          ║");
-            System.out.println("║  2. Remover livro            ║");
-            System.out.println("║  3. Buscar por título        ║");
-            System.out.println("║  4. Buscar por autor         ║");
-            System.out.println("║  5. Buscar por ISBN          ║");
-            System.out.println("║  6. Listar (ord. título)     ║");
-            System.out.println("║  7. Listar (ord. autor)      ║");
-            System.out.println("║  8. Listar (ord. ano)        ║");
-            System.out.println("║  9. Adicionar exemplar       ║");
-            System.out.println("║  0. Voltar                   ║");
-            System.out.println("╚══════════════════════════════╝");
+            
+            System.out.println("\n       - CATÁLOGO DE LIVROS -    ");
+           
+            System.out.println("  1. Cadastrar livro          ");
+            System.out.println("  2. Remover livro            ");
+            System.out.println("  3. Buscar por título        ");
+            System.out.println("  4. Buscar por autor         ");
+            System.out.println("  5. Buscar por ISBN          ");
+            System.out.println("  6. Listar (ord. título)     ");
+            System.out.println("  7. Listar (ord. autor)      ");
+            System.out.println("  8. Listar (ord. ano)        ");
+            System.out.println("  9. Adicionar exemplar       ");
+            System.out.println("  0. Voltar                   ");
             System.out.print("Opção: ");
 
             String opcao = scanner.nextLine().trim();

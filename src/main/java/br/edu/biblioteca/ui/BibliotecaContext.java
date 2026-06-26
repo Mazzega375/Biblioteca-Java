@@ -6,7 +6,6 @@ import java.util.ArrayDeque;
 import br.edu.biblioteca.action.Acao;
 
 /**
- * Contexto global da aplicação.
  * Instancia os repositórios e mantém a Pilha de histórico de ações (undo).
  *
  * Estrutura de Pilha → histórico de operações (requisito do projeto).

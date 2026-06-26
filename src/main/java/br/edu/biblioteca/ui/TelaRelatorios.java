@@ -26,18 +26,15 @@ public class TelaRelatorios {
     public void exibir() {
         boolean sair = false;
         while (!sair) {
-            System.out.println("\n╔══════════════════════════════╗");
-            System.out.println("║          RELATÓRIOS          ║");
-            System.out.println("╠══════════════════════════════╣");
-            System.out.println("║  1. Livros mais emprestados  ║");
-            System.out.println("║  2. Usuários inadimplentes   ║");
-            System.out.println("║  3. Empréstimos em atraso    ║");
-            System.out.println("║  4. Resumo geral do acervo   ║");
-            System.out.println("║  5. Resumo de reservas       ║");
-            System.out.println("║  6. Histórico de ações       ║");
-            System.out.println("║  7. Livros sem exemplares    ║");
-            System.out.println("║  0. Voltar                   ║");
-            System.out.println("╚══════════════════════════════╝");
+            System.out.println("\n         - RELATÓRIOS -         ");
+            System.out.println("  1. Livros mais emprestados  ");
+            System.out.println("  2. Usuários inadimplentes   ");
+            System.out.println("  3. Empréstimos em atraso    ");
+            System.out.println("  4. Resumo geral do acervo   ");
+            System.out.println("  5. Resumo de reservas       ");
+            System.out.println("  6. Histórico de ações       ");
+            System.out.println("  7. Livros sem exemplares    ");
+            System.out.println("  0. Voltar                   ");
             System.out.print("Opção: ");
 
             switch (scanner.nextLine().trim()) {

@@ -21,18 +21,16 @@ public class TelaUsuarios {
     public void exibir() {
         boolean sair = false;
         while (!sair) {
-            System.out.println("\n╔══════════════════════════════╗");
-            System.out.println("║       GESTÃO DE USUÁRIOS     ║");
-            System.out.println("╠══════════════════════════════╣");
-            System.out.println("║  1. Cadastrar usuário        ║");
-            System.out.println("║  2. Remover usuário          ║");
-            System.out.println("║  3. Buscar por ID            ║");
-            System.out.println("║  4. Buscar por nome          ║");
-            System.out.println("║  5. Listar todos             ║");
-            System.out.println("║  6. Listar bloqueados        ║");
-            System.out.println("║  7. Bloquear / desbloquear   ║");
-            System.out.println("║  0. Voltar                   ║");
-            System.out.println("╚══════════════════════════════╝");
+
+            System.out.println("\n       - GESTÃO DE USUÁRIOS -     ");
+            System.out.println("  1. Cadastrar usuário        ");
+            System.out.println("  2. Remover usuário          ");
+            System.out.println("  3. Buscar por ID            ");
+            System.out.println("  4. Buscar por nome          ");
+            System.out.println("  5. Listar todos             ");
+            System.out.println("  6. Listar bloqueados        ");
+            System.out.println("  7. Bloquear / desbloquear   ");
+            System.out.println("  0. Voltar                   ");
             System.out.print("Opção: ");
 
             switch (scanner.nextLine().trim()) {

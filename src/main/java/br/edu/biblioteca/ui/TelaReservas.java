@@ -28,17 +28,14 @@ public class TelaReservas {
     public void exibir() {
         boolean sair = false;
         while (!sair) {
-            System.out.println("\n╔══════════════════════════════╗");
-            System.out.println("║       RESERVAS DE LIVROS     ║");
-            System.out.println("╠══════════════════════════════╣");
-            System.out.println("║  1. Fazer reserva            ║");
-            System.out.println("║  2. Cancelar reserva         ║");
-            System.out.println("║  3. Fila de espera por ISBN  ║");
-            System.out.println("║  4. Minhas reservas          ║");
-            System.out.println("║  5. Atender próxima reserva  ║");
-            System.out.println("║  6. Listar todas as reservas ║");
-            System.out.println("║  0. Voltar                   ║");
-            System.out.println("╚══════════════════════════════╝");
+            System.out.println("\n      - RESERVAS DE LIVROS -     ");
+            System.out.println("  1. Fazer reserva            ");
+            System.out.println("  2. Cancelar reserva         ");
+            System.out.println("  3. Fila de espera por ISBN  ");
+            System.out.println("  4. Minhas reservas          ");
+            System.out.println("  5. Atender próxima reserva  ");
+            System.out.println("  6. Listar todas as reservas ");
+            System.out.println("  0. Voltar                   ");
             System.out.print("Opção: ");
 
             switch (scanner.nextLine().trim()) {

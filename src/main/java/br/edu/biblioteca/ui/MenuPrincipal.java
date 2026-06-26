@@ -5,15 +5,8 @@ import java.util.Scanner;
 /**
  * Menu principal do Sistema de Biblioteca.
  *
- * Ponto de entrada da interface console. Instancia o contexto global
- * (repositórios + pilha de histórico) e navega entre as telas.
- *
- * Estruturas de dados em uso:
- *   Lista    → repositórios de livros, usuários, empréstimos, exemplares
- *   Fila     → fila FIFO de reservas (ReservaRepository)
- *   Pilha    → histórico de ações / undo (BibliotecaContext)
- *   Árvore   → TreeMap nos repositórios para busca O(log n)
- *   Ordenação→ Comparator em LivroRepository (título, autor, ano)
+ * Ponto de entrada da interface console.
+ * 
  */
 public class MenuPrincipal {
 
@@ -37,25 +30,20 @@ public class MenuPrincipal {
 
     /** Inicia o loop principal da aplicação. */
     public void iniciar() {
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║     SISTEMA DE BIBLIOTECA  v2.0     ║");
-        System.out.println("╚══════════════════════════════════════╝");
+        System.out.println("\n     SISTEMA DE BIBLIOTECA  v2.0     ");
         System.out.printf("  Livros: %d  |  Usuários: %d%n",
                 ctx.livroRepo.quantidade(), ctx.usuarioRepo.quantidade());
 
         boolean sair = false;
         while (!sair) {
-            System.out.println("\n╔══════════════════════════════╗");
-            System.out.println("║         MENU PRINCIPAL       ║");
-            System.out.println("╠══════════════════════════════╣");
-            System.out.println("║  1. Catálogo de Livros       ║");
-            System.out.println("║  2. Usuários                 ║");
-            System.out.println("║  3. Empréstimos e Devoluções ║");
-            System.out.println("║  4. Reservas                 ║");
-            System.out.println("║  5. Relatórios               ║");
-            System.out.println("║  6. Desfazer última ação     ║");
-            System.out.println("║  0. Sair                     ║");
-            System.out.println("╚══════════════════════════════╝");
+            System.out.println("\n     - MENU PRINCIPAL -     ");
+            System.out.println("  1. Catálogo de Livros       ");
+            System.out.println("  2. Usuários                 ");
+            System.out.println("  3. Empréstimos e Devoluções ");
+            System.out.println("  4. Reservas                 ");
+            System.out.println("  5. Relatórios               ");
+            System.out.println("  6. Desfazer última ação     ");
+            System.out.println("  0. Sair                     ");
             System.out.print("Opção: ");
 
             switch (scanner.nextLine().trim()) {

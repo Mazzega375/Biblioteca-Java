@@ -31,17 +31,15 @@ public class TelaEmprestimos {
     public void exibir() {
         boolean sair = false;
         while (!sair) {
-            System.out.println("\n╔══════════════════════════════╗");
-            System.out.println("║     EMPRÉSTIMOS E DEVOLUÇÕES ║");
-            System.out.println("╠══════════════════════════════╣");
-            System.out.println("║  1. Realizar empréstimo      ║");
-            System.out.println("║  2. Registrar devolução      ║");
-            System.out.println("║  3. Ver empréstimos ativos   ║");
-            System.out.println("║  4. Buscar por usuário       ║");
-            System.out.println("║  5. Listar em atraso         ║");
-            System.out.println("║  6. Detalhar empréstimo      ║");
-            System.out.println("║  0. Voltar                   ║");
-            System.out.println("╚══════════════════════════════╝");
+
+            System.out.println("\n    - EMPRÉSTIMOS E DEVOLUÇÕES - ");
+            System.out.println("  1. Realizar empréstimo      ");
+            System.out.println("  2. Registrar devolução      ");
+            System.out.println("  3. Ver empréstimos ativos   ");
+            System.out.println("  4. Buscar por usuário       ");
+            System.out.println("  5. Listar em atraso         ");
+            System.out.println("  6. Detalhar empréstimo      ");
+            System.out.println("  0. Voltar                   ");
             System.out.print("Opção: ");
 
             switch (scanner.nextLine().trim()) {
