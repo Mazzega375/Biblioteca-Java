@@ -10,15 +10,11 @@ public class ConexaoDB {
 
     private static ConexaoDB instancia;
 
-    // =========================================================
-    //  *** ALTERE AQUI SE A CONEXÃO NÃO FUNCIONAR ***
-    // =========================================================
     private static final String HOST   = "localhost";
     private static final String PORTA  = "3306";
     private static final String BANCO  = "biblioteca";
     private static final String USUARIO = "root";
-    private static final String SENHA   = "2501"; // <-- MUDE AQUI
-    // =========================================================
+    private static final String SENHA   = "2501"; 
 
     private static final String URL    = "jdbc:mysql://" + HOST + ":" + PORTA + "/" + BANCO
                                          + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Sao_Paulo";

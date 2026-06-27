@@ -21,9 +21,7 @@ public class UsuarioRepository {
         carregarDoBanco();
     }
 
-    // -------------------------------------------------------------------------
-    // CRUD
-    // -------------------------------------------------------------------------
+    // CRUD = Create, Read, Update, Delete
 
     public void salvar(Usuario usuario) {
         Objects.requireNonNull(usuario, "Usuário não pode ser nulo");
@@ -128,9 +126,7 @@ public class UsuarioRepository {
         return usuarios;
     }
 
-    // -------------------------------------------------------------------------
-    // Busca
-    // -------------------------------------------------------------------------
+    // Busca 
 
     public List<Usuario> buscarPorNome(String nome) {
         String n = nome.toLowerCase();
@@ -198,9 +194,7 @@ public class UsuarioRepository {
         return new ArrayList<>();
     }
 
-    // -------------------------------------------------------------------------
     // Utilitários
-    // -------------------------------------------------------------------------
 
     public int quantidade() {
         try (Connection conn = conexaoDB.obterConexao()) {
@@ -217,10 +211,9 @@ public class UsuarioRepository {
         return 0;
     }
 
-    // -------------------------------------------------------------------------
+   
     // Métodos Auxiliares
-    // -------------------------------------------------------------------------
-
+    
     private Usuario extrairUsuarioDoResultSet(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String nome = rs.getString("nome");

@@ -9,13 +9,6 @@ import java.util.List;
 /**
  * Utilitário para leitura e escrita de arquivos CSV/TXT.
  * Todos os repositórios delegam operações de I/O a esta classe.
- *
- * Estrutura dos arquivos gerados:
- *   dados/livros.csv
- *   dados/usuarios.csv
- *   dados/emprestimos.csv
- *   dados/reservas.csv
- *   dados/exemplares.csv
  */
 public class FileStorage {
 
