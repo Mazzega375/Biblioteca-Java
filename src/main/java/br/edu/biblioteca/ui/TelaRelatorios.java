@@ -82,13 +82,13 @@ public class TelaRelatorios {
                         u, atraso.size(), totalMulta);
             }
         }
-        if (!encontrou) System.out.println("  ✔ Nenhum usuário inadimplente.");
+        if (!encontrou) System.out.println("Nenhum usuário inadimplente.");
     }
 
     private void relatorioEmprestimosEmAtraso() {
-        System.out.println("\n════════ EMPRÉSTIMOS EM ATRASO ════════");
+        System.out.println("\n  - EMPRÉSTIMOS EM ATRASO - ");
         List<Emprestimo> lista = ctx.emprestimoRepo.listarEmAtraso();
-        if (lista.isEmpty()) { System.out.println("  ✔ Nenhum empréstimo em atraso."); return; }
+        if (lista.isEmpty()) { System.out.println("Nenhum empréstimo em atraso."); return; }
 
         double totalMultas = 0;
         for (Emprestimo e : lista) {
@@ -158,14 +158,14 @@ public class TelaRelatorios {
     }
 
     private void relatorioHistoricoAcoes() {
-        System.out.println("\n════════ HISTÓRICO DE AÇÕES ════════");
+        System.out.println("\n  - HISTÓRICO DE AÇÕES - ");
         System.out.printf("  Total de ações registradas: %d%n", ctx.tamanhoHistorico());
         System.out.println("  (mais recente primeiro)");
         ctx.imprimirHistorico();
     }
 
     private void relatorioLivrosSemExemplares() {
-        System.out.println("\n════════ LIVROS SEM EXEMPLARES ════════");
+        System.out.println("\n  - LIVROS SEM EXEMPLARES - ");
         boolean encontrou = false;
         for (Livro l : ctx.livroRepo.listarTodos()) {
             if (ctx.exemplarRepo.contarTotal(l.getIsbn()) == 0) {
@@ -173,6 +173,6 @@ public class TelaRelatorios {
                 encontrou = true;
             }
         }
-        if (!encontrou) System.out.println("  ✔ Todos os livros possuem ao menos um exemplar.");
+        if (!encontrou) System.out.println("Todos os livros possuem ao menos um exemplar.");
     }
 }

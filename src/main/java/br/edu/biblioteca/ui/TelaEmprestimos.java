@@ -126,7 +126,7 @@ public class TelaEmprestimos {
         List<Emprestimo> atrasados = ctx.emprestimoRepo.listarEmAtraso();
         System.out.println("\n--- Empréstimos em Atraso (" + atrasados.size() + ") ---");
         if (atrasados.isEmpty()) {
-            System.out.println("  ✔ Nenhum empréstimo em atraso.");
+            System.out.println("Nenhum empréstimo em atraso.");
         } else {
             atrasados.forEach(e -> {
                 Usuario u = ctx.usuarioRepo.buscarPorId(e.getUsuarioId());
