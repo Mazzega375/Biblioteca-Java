@@ -28,6 +28,7 @@ public class EmprestimoRepository {
                 String sql = "INSERT INTO emprestimos (usuario_id, isbn_livro, data_emprestimo, data_prevista_devolucao, data_devolucao, devolvido) " +
                              "VALUES (?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                    //pstmt é objeto que envia comandos
                     pstmt.setInt(1, emprestimo.getUsuarioId());
                     pstmt.setString(2, emprestimo.getIsbnLivro());
                     pstmt.setDate(3, java.sql.Date.valueOf(emprestimo.getDataEmprestimo()));
