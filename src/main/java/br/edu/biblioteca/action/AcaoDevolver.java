@@ -47,7 +47,7 @@ public class AcaoDevolver implements Acao {
         if (multa > 0) {
             System.out.printf("⚠ Atraso de %d dia(s). Multa: R$ %.2f%n", emprestimo.diasAtraso(), multa);
         } else {
-            System.out.println("✔ Devolução registrada: " + emprestimo);
+            System.out.println("Devolução registrada: " + emprestimo);
         }
     }
 

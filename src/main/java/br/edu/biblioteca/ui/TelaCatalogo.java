@@ -133,7 +133,7 @@ public class TelaCatalogo {
         for (int i = 0; i < qtd; i++) {
             ctx.exemplarRepo.salvar(new Exemplar(0, isbn));
         }
-        System.out.printf("✔ %d exemplar(es) adicionado(s) para ISBN %s%n", qtd, isbn);
+        System.out.printf(" %d exemplar(es) adicionado(s) para ISBN %s%n", qtd, isbn);
     }
 
     private void listar(List<Livro> livros, String titulo) {

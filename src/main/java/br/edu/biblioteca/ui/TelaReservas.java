@@ -127,7 +127,7 @@ public class TelaReservas {
             Reserva r = opt.get();
             Usuario u = ctx.usuarioRepo.buscarPorId(r.getUsuarioId());
             String nome = u != null ? u.getNome() : "ID " + r.getUsuarioId();
-            System.out.printf("✔ Reserva atendida → Notificar usuário: %s (%s)%n", nome, u != null ? u.getEmail() : "");
+            System.out.printf("Reserva atendida → Notificar usuário: %s (%s)%n", nome, u != null ? u.getEmail() : "");
         }
     }
 

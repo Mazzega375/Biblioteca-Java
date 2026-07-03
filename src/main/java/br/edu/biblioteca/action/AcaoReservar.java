@@ -16,7 +16,7 @@ public class AcaoReservar implements Acao {
     @Override
     public void executar() {
         reservaRepo.salvar(reserva);
-        System.out.println("✔ Reserva criada: " + reserva);
+        System.out.println("Reserva criada: " + reserva);
     }
 
     @Override

@@ -16,7 +16,7 @@ public class AcaoCadastrarLivro implements Acao {
     @Override
     public void executar() {
         livroRepo.salvar(livro);
-        System.out.println("✔ Livro cadastrado: " + livro);
+        System.out.println("Livro cadastrado: " + livro);
     }
 
     @Override

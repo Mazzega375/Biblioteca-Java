@@ -16,7 +16,7 @@ public class AcaoRemoverLivro implements Acao {
     @Override
     public void executar() {
         livroRepo.remover(livro.getIsbn());
-        System.out.println("✔ Livro removido: " + livro.getTitulo());
+        System.out.println("Livro removido: " + livro.getTitulo());
     }
 
     @Override

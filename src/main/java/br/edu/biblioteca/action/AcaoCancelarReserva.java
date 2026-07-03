@@ -19,7 +19,7 @@ public class AcaoCancelarReserva implements Acao {
         statusAnterior = reserva.getStatus();
         reserva.setStatus(Reserva.Status.CANCELADA);
         reservaRepo.salvar(reserva);
-        System.out.println("✔ Reserva cancelada: " + reserva);
+        System.out.println("Reserva cancelada: " + reserva);
     }
 
     @Override

@@ -27,7 +27,7 @@ public class AcaoEmpresta implements Acao {
         exemplar.setStatus(Exemplar.Status.EMPRESTADO);
         exemplarRepo.salvar(exemplar);
         emprestimoRepo.salvar(emprestimo);
-        System.out.println("✔ Empréstimo registrado: " + emprestimo);
+        System.out.println("Empréstimo registrado: " + emprestimo);
     }
 
     @Override

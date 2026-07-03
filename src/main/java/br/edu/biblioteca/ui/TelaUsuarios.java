@@ -63,7 +63,7 @@ public class TelaUsuarios {
 
         Usuario u = new Usuario(0, nome, email, tipo);
         ctx.usuarioRepo.salvar(u);
-        System.out.println("✔ Usuário cadastrado: " + u);
+        System.out.println("Usuário cadastrado: " + u);
     }
 
     private void removerUsuario() {
@@ -75,7 +75,7 @@ public class TelaUsuarios {
         System.out.print("Confirmar remoção? (s/n): ");
         if (scanner.nextLine().trim().equalsIgnoreCase("s")) {
             ctx.usuarioRepo.remover(id);
-            System.out.println("✔ Usuário removido.");
+            System.out.println("Usuário removido.");
         }
     }
 
