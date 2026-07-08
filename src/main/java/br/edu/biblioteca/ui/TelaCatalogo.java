@@ -1,4 +1,4 @@
-package br.edu.biblioteca.ui;
+﻿package br.edu.biblioteca.ui;
 
 import br.edu.biblioteca.action.AcaoCadastrarLivro;
 import br.edu.biblioteca.action.AcaoRemoverLivro;
@@ -52,7 +52,7 @@ public class TelaCatalogo {
                 case "8" -> listar(ctx.livroRepo.ordenarPorAno(),   "Ordenado por Ano");
                 case "9" -> adicionarExemplar();
                 case "0" -> sair = true;
-                default  -> System.out.println("⚠  Opção inválida.");
+                default  -> System.out.println("  Opção inválida.");
             }
         }
     }
@@ -69,7 +69,7 @@ public class TelaCatalogo {
         System.out.print("Categoria: ");    String cat      = scanner.nextLine().trim();
 
         if (ctx.livroRepo.buscarPorIsbn(isbn) != null) {
-            System.out.println("⚠  Já existe um livro com esse ISBN.");
+            System.out.println("  Já existe um livro com esse ISBN.");
             return;
         }
 
@@ -83,7 +83,7 @@ public class TelaCatalogo {
         String isbn = scanner.nextLine().trim();
         Livro livro = ctx.livroRepo.buscarPorIsbn(isbn);
         if (livro == null) {
-            System.out.println("⚠  Livro não encontrado.");
+            System.out.println("  Livro não encontrado.");
             return;
         }
         System.out.println("Livro: " + livro);
@@ -112,7 +112,7 @@ public class TelaCatalogo {
         String isbn = scanner.nextLine().trim();
         Livro livro = ctx.livroRepo.buscarPorIsbn(isbn);
         if (livro == null) {
-            System.out.println("⚠  Livro não encontrado.");
+            System.out.println("  Livro não encontrado.");
         } else {
             System.out.println(livro);
             long disp = ctx.exemplarRepo.contarDisponiveis(isbn);
@@ -125,7 +125,7 @@ public class TelaCatalogo {
         System.out.print("ISBN do livro: ");
         String isbn = scanner.nextLine().trim();
         if (ctx.livroRepo.buscarPorIsbn(isbn) == null) {
-            System.out.println("⚠  Livro não encontrado.");
+            System.out.println("  Livro não encontrado.");
             return;
         }
         System.out.print("Quantidade de exemplares a adicionar: ");
@@ -154,8 +154,9 @@ public class TelaCatalogo {
             String linha = scanner.nextLine().trim();
             return Integer.parseInt(linha);
         } catch (NumberFormatException e) {
-            System.out.println("⚠  Valor inválido, usando 0.");
+            System.out.println("  Valor inválido, usando 0.");
             return 0;
         }
     }
 }
+

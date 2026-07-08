@@ -1,4 +1,4 @@
-package br.edu.biblioteca.action;
+﻿package br.edu.biblioteca.action;
 
 import br.edu.biblioteca.model.Emprestimo;
 import br.edu.biblioteca.model.Exemplar;
@@ -45,7 +45,7 @@ public class AcaoDevolver implements Acao {
 
         double multa = emprestimo.calcularMulta();
         if (multa > 0) {
-            System.out.printf("⚠ Atraso de %d dia(s). Multa: R$ %.2f%n", emprestimo.diasAtraso(), multa);
+            System.out.printf(" Atraso de %d dia(s). Multa: R$ %.2f%n", emprestimo.diasAtraso(), multa);
         } else {
             System.out.println("Devolução registrada: " + emprestimo);
         }
@@ -69,3 +69,4 @@ public class AcaoDevolver implements Acao {
                 emprestimo.getId(), emprestimo.getIsbnLivro(), dataDevolucao);
     }
 }
+

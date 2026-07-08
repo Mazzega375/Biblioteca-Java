@@ -1,4 +1,4 @@
-package br.edu.biblioteca.repository;
+﻿package br.edu.biblioteca.repository;
 
 import br.edu.biblioteca.model.Livro;
 import br.edu.biblioteca.database.ConexaoDB;
@@ -39,13 +39,13 @@ public class LivroRepository {
                 pstmt.setInt(10, livro.getAno());
                 pstmt.setString(11, livro.getCategoria());
                 pstmt.executeUpdate();
-                System.out.println("✓ Livro [" + livro.getIsbn() + "] salvo no banco de dados");
+                System.out.println(" Livro [" + livro.getIsbn() + "] salvo no banco de dados");
             }
             
             cache.put(livro.getIsbn(), livro);
             
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao salvar livro: " + e.getMessage());
+            System.err.println(" Erro ao salvar livro: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -68,7 +68,7 @@ public class LivroRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar livro por ISBN: " + e.getMessage());
+            System.err.println(" Erro ao buscar livro por ISBN: " + e.getMessage());
         }
         return null;
     }
@@ -80,12 +80,12 @@ public class LivroRepository {
                 pstmt.setString(1, isbn);
                 int linhasAfetadas = pstmt.executeUpdate();
                 if (linhasAfetadas > 0) {
-                    System.out.println("✓ Livro [" + isbn + "] removido do banco de dados");
+                    System.out.println(" Livro [" + isbn + "] removido do banco de dados");
                     cache.remove(isbn);
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao remover livro: " + e.getMessage());
+            System.err.println(" Erro ao remover livro: " + e.getMessage());
         }
     }
 
@@ -103,7 +103,7 @@ public class LivroRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao listar livros: " + e.getMessage());
+            System.err.println(" Erro ao listar livros: " + e.getMessage());
         }
         
         return livros;
@@ -125,7 +125,7 @@ public class LivroRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar livros por título: " + e.getMessage());
+            System.err.println(" Erro ao buscar livros por título: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -147,7 +147,7 @@ public class LivroRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar livros por autor: " + e.getMessage());
+            System.err.println(" Erro ao buscar livros por autor: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -169,7 +169,7 @@ public class LivroRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar livros por categoria: " + e.getMessage());
+            System.err.println(" Erro ao buscar livros por categoria: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -185,7 +185,7 @@ public class LivroRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao contar livros: " + e.getMessage());
+            System.err.println(" Erro ao contar livros: " + e.getMessage());
         }
         return 0;
     }
@@ -204,9 +204,9 @@ public class LivroRepository {
     private void carregarDoBanco() {
         try {
             List<Livro> livros = listarTodos();
-            System.out.println("✓ " + livros.size() + " livros carregados do banco de dados");
+            System.out.println(" " + livros.size() + " livros carregados do banco de dados");
         } catch (Exception e) {
-            System.err.println("✗ Erro ao carregar livros do banco de dados: " + e.getMessage());
+            System.err.println(" Erro ao carregar livros do banco de dados: " + e.getMessage());
         }
     }
 
@@ -232,3 +232,4 @@ public class LivroRepository {
         return conexaoDB.testarConexao();
     }
 }
+

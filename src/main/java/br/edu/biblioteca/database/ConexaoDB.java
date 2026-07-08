@@ -1,4 +1,4 @@
-package br.edu.biblioteca.database;
+﻿package br.edu.biblioteca.database;
 
 import java.sql.*;
 
@@ -23,9 +23,9 @@ public class ConexaoDB {
     private ConexaoDB() {
         try {
             Class.forName(DRIVER);
-            System.out.println("✓ Driver MySQL carregado com sucesso");
+            System.out.println(" Driver MySQL carregado com sucesso");
         } catch (ClassNotFoundException e) {
-            System.err.println("✗ Erro ao carregar driver MySQL: " + e.getMessage());
+            System.err.println(" Erro ao carregar driver MySQL: " + e.getMessage());
             throw new RuntimeException("Driver MySQL não encontrado", e);
         }
     }
@@ -42,7 +42,7 @@ public class ConexaoDB {
             Connection conexao = DriverManager.getConnection(URL, USUARIO, SENHA);
             return conexao;
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao conectar ao banco de dados: " + e.getMessage());
+            System.err.println(" Erro ao conectar ao banco de dados: " + e.getMessage());
             System.err.println("  → Verifique: host=" + HOST + " porta=" + PORTA
                     + " banco=" + BANCO + " usuario=" + USUARIO);
             throw new SQLException("Falha na conexão com o banco de dados", e);
@@ -53,7 +53,7 @@ public class ConexaoDB {
         try (Connection conexao = obterConexao()) {
             return conexao.isValid(5);
         } catch (SQLException e) {
-            System.err.println("✗ Teste de conexão falhou: " + e.getMessage());
+            System.err.println(" Teste de conexão falhou: " + e.getMessage());
             return false;
         }
     }
@@ -82,3 +82,4 @@ public class ConexaoDB {
         fecharConexao(conexao);
     }
 }
+

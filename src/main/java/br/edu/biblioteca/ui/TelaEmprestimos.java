@@ -1,4 +1,4 @@
-package br.edu.biblioteca.ui;
+﻿package br.edu.biblioteca.ui;
 
 import br.edu.biblioteca.action.AcaoDevolver;
 import br.edu.biblioteca.action.AcaoEmpresta;
@@ -52,7 +52,7 @@ public class TelaEmprestimos {
                 case "5" -> listarEmAtraso();
                 case "6" -> detalharEmprestimo();
                 case "0" -> sair = true;
-                default  -> System.out.println("⚠  Opção inválida.");
+                default  -> System.out.println("  Opção inválida.");
             }
         }
     }
@@ -64,17 +64,17 @@ public class TelaEmprestimos {
         System.out.print("ID do usuário: ");
         int usuarioId = lerInt();
         Usuario usuario = ctx.usuarioRepo.buscarPorId(usuarioId);
-        if (usuario == null)          { System.out.println("⚠  Usuário não encontrado.");  return; }
-        if (usuario.isBloqueado())    { System.out.println("⚠  Usuário bloqueado.");        return; }
+        if (usuario == null)          { System.out.println("  Usuário não encontrado.");  return; }
+        if (usuario.isBloqueado())    { System.out.println("  Usuário bloqueado.");        return; }
 
         System.out.print("ISBN do livro: ");
         String isbn = scanner.nextLine().trim();
         Livro livro = ctx.livroRepo.buscarPorIsbn(isbn);
-        if (livro == null) { System.out.println("⚠  Livro não encontrado."); return; }
+        if (livro == null) { System.out.println("  Livro não encontrado."); return; }
 
         Optional<Exemplar> exemplarOpt = ctx.exemplarRepo.buscarDisponivelPorIsbn(isbn);
         if (exemplarOpt.isEmpty()) {
-            System.out.println("⚠  Nenhum exemplar disponível para esse ISBN.");
+            System.out.println("  Nenhum exemplar disponível para esse ISBN.");
             System.out.println("   Deseja verificar a fila de reservas? (s/n): ");
             scanner.nextLine();
             return;
@@ -99,8 +99,8 @@ public class TelaEmprestimos {
         System.out.print("ID do empréstimo: ");
         int id = lerInt();
         Emprestimo emp = ctx.emprestimoRepo.buscarPorId(id);
-        if (emp == null)          { System.out.println("⚠  Empréstimo não encontrado."); return; }
-        if (emp.isDevolvido())    { System.out.println("⚠  Livro já devolvido.");        return; }
+        if (emp == null)          { System.out.println("  Empréstimo não encontrado."); return; }
+        if (emp.isDevolvido())    { System.out.println("  Livro já devolvido.");        return; }
 
         // Busca o exemplar emprestado
         List<Exemplar> exemplares = ctx.exemplarRepo.buscarPorIsbn(emp.getIsbnLivro());
@@ -108,7 +108,7 @@ public class TelaEmprestimos {
                 .filter(e -> e.getStatus() == Exemplar.Status.EMPRESTADO)
                 .findFirst();
         if (exemplarOpt.isEmpty()) {
-            System.out.println("⚠  Exemplar correspondente não encontrado.");
+            System.out.println("  Exemplar correspondente não encontrado.");
             return;
         }
 
@@ -141,7 +141,7 @@ public class TelaEmprestimos {
         System.out.print("ID do empréstimo: ");
         int id = lerInt();
         Emprestimo emp = ctx.emprestimoRepo.buscarPorId(id);
-        if (emp == null) { System.out.println("⚠  Não encontrado."); return; }
+        if (emp == null) { System.out.println("  Não encontrado."); return; }
         System.out.println("\n  " + emp);
         Usuario u = ctx.usuarioRepo.buscarPorId(emp.getUsuarioId());
         if (u != null) System.out.println("  Usuário: " + u);
@@ -160,3 +160,4 @@ public class TelaEmprestimos {
         catch (NumberFormatException e) { return 0; }
     }
 }
+

@@ -1,4 +1,4 @@
-package br.edu.biblioteca.ui;
+﻿package br.edu.biblioteca.ui;
 
 import br.edu.biblioteca.repository.*;
 
@@ -35,7 +35,7 @@ public class BibliotecaContext {
      */
     public void desfazerUltima() {
         if (pilhaHistorico.isEmpty()) {
-            System.out.println("⚠  Nenhuma ação para desfazer.");
+            System.out.println("  Nenhuma ação para desfazer.");
             return;
         }
         Acao ultima = pilhaHistorico.pop();
@@ -66,3 +66,4 @@ public class BibliotecaContext {
         }
     }
 }
+

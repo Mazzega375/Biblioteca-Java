@@ -1,4 +1,4 @@
-package br.edu.biblioteca.repository;
+﻿package br.edu.biblioteca.repository;
 
 import br.edu.biblioteca.model.Usuario;
 import br.edu.biblioteca.database.ConexaoDB;
@@ -41,7 +41,7 @@ public class UsuarioRepository {
                             usuario.setId(generatedKeys.getInt(1));
                         }
                     }
-                    System.out.println("✓ Usuário #" + usuario.getId() + " salvo no banco de dados");
+                    System.out.println(" Usuário #" + usuario.getId() + " salvo no banco de dados");
                 }
             } else {
                 // Atualizar usuário existente
@@ -53,7 +53,7 @@ public class UsuarioRepository {
                     pstmt.setBoolean(4, usuario.isBloqueado());
                     pstmt.setInt(5, usuario.getId());
                     pstmt.executeUpdate();
-                    System.out.println("✓ Usuário #" + usuario.getId() + " atualizado no banco de dados");
+                    System.out.println(" Usuário #" + usuario.getId() + " atualizado no banco de dados");
                 }
             }
             
@@ -61,7 +61,7 @@ public class UsuarioRepository {
             cache.put(usuario.getId(), usuario);
             
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao salvar usuário: " + e.getMessage());
+            System.err.println(" Erro ao salvar usuário: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -85,7 +85,7 @@ public class UsuarioRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar usuário por ID: " + e.getMessage());
+            System.err.println(" Erro ao buscar usuário por ID: " + e.getMessage());
         }
         return null;
     }
@@ -97,12 +97,12 @@ public class UsuarioRepository {
                 pstmt.setInt(1, id);
                 int linhasAfetadas = pstmt.executeUpdate();
                 if (linhasAfetadas > 0) {
-                    System.out.println("✓ Usuário #" + id + " removido do banco de dados");
+                    System.out.println(" Usuário #" + id + " removido do banco de dados");
                     cache.remove(id);
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao remover usuário: " + e.getMessage());
+            System.err.println(" Erro ao remover usuário: " + e.getMessage());
         }
     }
 
@@ -120,7 +120,7 @@ public class UsuarioRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao listar usuários: " + e.getMessage());
+            System.err.println(" Erro ao listar usuários: " + e.getMessage());
         }
         
         return usuarios;
@@ -146,7 +146,7 @@ public class UsuarioRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar usuários por nome: " + e.getMessage());
+            System.err.println(" Erro ao buscar usuários por nome: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -168,7 +168,7 @@ public class UsuarioRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar usuários por tipo: " + e.getMessage());
+            System.err.println(" Erro ao buscar usuários por tipo: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -188,7 +188,7 @@ public class UsuarioRepository {
                 return usuarios;
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao listar usuários bloqueados: " + e.getMessage());
+            System.err.println(" Erro ao listar usuários bloqueados: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -206,7 +206,7 @@ public class UsuarioRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao contar usuários: " + e.getMessage());
+            System.err.println(" Erro ao contar usuários: " + e.getMessage());
         }
         return 0;
     }
@@ -230,10 +230,10 @@ public class UsuarioRepository {
         try {
             List<Usuario> usuarios = listarTodos();
             if (!usuarios.isEmpty()) {
-                System.out.println("✓ " + usuarios.size() + " usuários carregados do banco de dados");
+                System.out.println(" " + usuarios.size() + " usuários carregados do banco de dados");
             }
         } catch (Exception e) {
-            System.err.println("✗ Erro ao carregar usuários do banco de dados: " + e.getMessage());
+            System.err.println(" Erro ao carregar usuários do banco de dados: " + e.getMessage());
         }
     }
 
@@ -241,3 +241,4 @@ public class UsuarioRepository {
         return conexaoDB.testarConexao();
     }
 }
+

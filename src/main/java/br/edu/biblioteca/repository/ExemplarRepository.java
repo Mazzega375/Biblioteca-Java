@@ -1,4 +1,4 @@
-package br.edu.biblioteca.repository;
+﻿package br.edu.biblioteca.repository;
 
 import br.edu.biblioteca.model.Exemplar;
 import br.edu.biblioteca.database.ConexaoDB;
@@ -34,7 +34,7 @@ public class ExemplarRepository {
                             exemplar.setId(generatedKeys.getInt(1));
                         }
                     }
-                    System.out.println("✓ Exemplar #" + exemplar.getId() + " salvo no banco de dados");
+                    System.out.println(" Exemplar #" + exemplar.getId() + " salvo no banco de dados");
                 }
             } else {
                 String sql = "UPDATE exemplares SET isbn_livro=?, status=? WHERE id=?";
@@ -43,14 +43,14 @@ public class ExemplarRepository {
                     pstmt.setString(2, exemplar.getStatus().name());
                     pstmt.setInt(3, exemplar.getId());
                     pstmt.executeUpdate();
-                    System.out.println("✓ Exemplar #" + exemplar.getId() + " atualizado no banco de dados");
+                    System.out.println(" Exemplar #" + exemplar.getId() + " atualizado no banco de dados");
                 }
             }
             
             cache.put(exemplar.getId(), exemplar);
             
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao salvar exemplar: " + e.getMessage());
+            System.err.println(" Erro ao salvar exemplar: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -73,7 +73,7 @@ public class ExemplarRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar exemplar por ID: " + e.getMessage());
+            System.err.println(" Erro ao buscar exemplar por ID: " + e.getMessage());
         }
         return null;
     }
@@ -85,12 +85,12 @@ public class ExemplarRepository {
                 pstmt.setInt(1, id);
                 int linhasAfetadas = pstmt.executeUpdate();
                 if (linhasAfetadas > 0) {
-                    System.out.println("✓ Exemplar #" + id + " removido do banco de dados");
+                    System.out.println(" Exemplar #" + id + " removido do banco de dados");
                     cache.remove(id);
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao remover exemplar: " + e.getMessage());
+            System.err.println(" Erro ao remover exemplar: " + e.getMessage());
         }
     }
 
@@ -108,7 +108,7 @@ public class ExemplarRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao listar exemplares: " + e.getMessage());
+            System.err.println(" Erro ao listar exemplares: " + e.getMessage());
         }
         
         return exemplares;
@@ -130,7 +130,7 @@ public class ExemplarRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar exemplares por ISBN: " + e.getMessage());
+            System.err.println(" Erro ao buscar exemplares por ISBN: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -152,7 +152,7 @@ public class ExemplarRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar exemplares por status: " + e.getMessage());
+            System.err.println(" Erro ao buscar exemplares por status: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -174,7 +174,7 @@ public class ExemplarRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar exemplares disponíveis: " + e.getMessage());
+            System.err.println(" Erro ao buscar exemplares disponíveis: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -190,7 +190,7 @@ public class ExemplarRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao contar exemplares: " + e.getMessage());
+            System.err.println(" Erro ao contar exemplares: " + e.getMessage());
         }
         return 0;
     }
@@ -209,10 +209,10 @@ public class ExemplarRepository {
         try {
             List<Exemplar> exemplares = listarTodos();
             if (!exemplares.isEmpty()) {
-                System.out.println("✓ " + exemplares.size() + " exemplares carregados do banco de dados");
+                System.out.println(" " + exemplares.size() + " exemplares carregados do banco de dados");
             }
         } catch (Exception e) {
-            System.err.println("✗ Erro ao carregar exemplares do banco de dados: " + e.getMessage());
+            System.err.println(" Erro ao carregar exemplares do banco de dados: " + e.getMessage());
         }
     }
 
@@ -232,7 +232,7 @@ public class ExemplarRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao contar disponíveis: " + e.getMessage());
+            System.err.println(" Erro ao contar disponíveis: " + e.getMessage());
         }
         return 0;
     }
@@ -248,7 +248,7 @@ public class ExemplarRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao contar total de exemplares: " + e.getMessage());
+            System.err.println(" Erro ao contar total de exemplares: " + e.getMessage());
         }
         return 0;
     }
@@ -257,3 +257,4 @@ public class ExemplarRepository {
         return conexaoDB.testarConexao();
     }
 }
+

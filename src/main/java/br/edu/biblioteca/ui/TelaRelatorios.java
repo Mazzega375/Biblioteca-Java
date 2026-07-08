@@ -1,4 +1,4 @@
-package br.edu.biblioteca.ui;
+﻿package br.edu.biblioteca.ui;
 
 import br.edu.biblioteca.model.Emprestimo;
 import br.edu.biblioteca.model.Livro;
@@ -46,7 +46,7 @@ public class TelaRelatorios {
                 case "6" -> relatorioHistoricoAcoes();
                 case "7" -> relatorioLivrosSemExemplares();
                 case "0" -> sair = true;
-                default  -> System.out.println("⚠  Opção inválida.");
+                default  -> System.out.println("  Opção inválida.");
             }
         }
     }
@@ -54,7 +54,7 @@ public class TelaRelatorios {
     // -------------------------------------------------------------------------
 
     private void relatorioLivrosMaisEmprestados() {
-        System.out.println("\n════════ LIVROS MAIS EMPRESTADOS ════════");
+        System.out.println("\n - LIVROS MAIS EMPRESTADOS - ");
         Map<String, Long> contagem = ctx.emprestimoRepo.contagemPorLivro();
         if (contagem.isEmpty()) { System.out.println("  (sem empréstimos registrados)"); return; }
 
@@ -70,7 +70,7 @@ public class TelaRelatorios {
     }
 
     private void relatorioUsuariosInadimplentes() {
-        System.out.println("\n════════ USUÁRIOS INADIMPLENTES ════════");
+        System.out.println("\n - USUÁRIOS INADIMPLENTES - ");
         boolean encontrou = false;
         for (Usuario u : ctx.usuarioRepo.listarTodos()) {
             List<Emprestimo> atraso = ctx.emprestimoRepo.buscarAtivosDoUsuario(u.getId())
@@ -105,7 +105,7 @@ public class TelaRelatorios {
     }
 
     private void relatorioResumoAcervo() {
-        System.out.println("\n════════ RESUMO DO ACERVO ════════");
+        System.out.println("\n - RESUMO DO ACERVO - ");
         int totalLivros      = ctx.livroRepo.quantidade();
         int totalExemplares  = ctx.exemplarRepo.quantidade();
         int totalUsuarios    = ctx.usuarioRepo.quantidade();
@@ -131,7 +131,7 @@ public class TelaRelatorios {
     }
 
     private void relatorioResumoReservas() {
-        System.out.println("\n════════ RESUMO DE RESERVAS ════════");
+        System.out.println("\n - RESUMO DE RESERVAS - ");
         List<Reserva> todas = ctx.reservaRepo.listarTodas();
         long aguardando = todas.stream().filter(r -> r.getStatus() == Reserva.Status.AGUARDANDO).count();
         long atendidas  = todas.stream().filter(r -> r.getStatus() == Reserva.Status.ATENDIDA).count();
@@ -176,3 +176,4 @@ public class TelaRelatorios {
         if (!encontrou) System.out.println("Todos os livros possuem ao menos um exemplar.");
     }
 }
+

@@ -1,4 +1,4 @@
-package br.edu.biblioteca.ui;
+﻿package br.edu.biblioteca.ui;
 
 import br.edu.biblioteca.model.Usuario;
 
@@ -42,7 +42,7 @@ public class TelaUsuarios {
                 case "6" -> listar(ctx.usuarioRepo.listarBloqueados(), "Usuários Bloqueados");
                 case "7" -> alternarBloqueio();
                 case "0" -> sair = true;
-                default  -> System.out.println("⚠  Opção inválida.");
+                default  -> System.out.println("  Opção inválida.");
             }
         }
     }
@@ -70,7 +70,7 @@ public class TelaUsuarios {
         System.out.print("ID do usuário: ");
         int id = lerInt();
         Usuario u = ctx.usuarioRepo.buscarPorId(id);
-        if (u == null) { System.out.println("⚠  Usuário não encontrado."); return; }
+        if (u == null) { System.out.println("  Usuário não encontrado."); return; }
         System.out.println("Usuário: " + u);
         System.out.print("Confirmar remoção? (s/n): ");
         if (scanner.nextLine().trim().equalsIgnoreCase("s")) {
@@ -83,7 +83,7 @@ public class TelaUsuarios {
         System.out.print("ID: ");
         int id = lerInt();
         Usuario u = ctx.usuarioRepo.buscarPorId(id);
-        if (u == null) System.out.println("⚠  Não encontrado.");
+        if (u == null) System.out.println("  Não encontrado.");
         else           exibirDetalhes(u);
     }
 
@@ -97,7 +97,7 @@ public class TelaUsuarios {
         System.out.print("ID do usuário: ");
         int id = lerInt();
         Usuario u = ctx.usuarioRepo.buscarPorId(id);
-        if (u == null) { System.out.println("⚠  Usuário não encontrado."); return; }
+        if (u == null) { System.out.println("  Usuário não encontrado."); return; }
         u.setBloqueado(!u.isBloqueado());
         ctx.usuarioRepo.salvar(u);
         System.out.println(u.isBloqueado()
@@ -113,7 +113,7 @@ public class TelaUsuarios {
                 .mapToDouble(e -> e.calcularMulta())
                 .sum();
         if (totalMulta > 0) {
-            System.out.printf("  ⚠  Multa pendente: R$ %.2f%n", totalMulta);
+            System.out.printf("    Multa pendente: R$ %.2f%n", totalMulta);
         }
     }
 
@@ -128,3 +128,4 @@ public class TelaUsuarios {
         catch (NumberFormatException e) { return 0; }
     }
 }
+

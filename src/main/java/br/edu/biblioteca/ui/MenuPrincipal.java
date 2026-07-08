@@ -1,4 +1,4 @@
-package br.edu.biblioteca.ui;
+﻿package br.edu.biblioteca.ui;
 
 import java.util.Scanner;
 
@@ -54,7 +54,7 @@ public class MenuPrincipal {
                 case "5" -> telaRelatorios.exibir();
                 case "6" -> desfazerUltimaAcao();
                 case "0" -> sair = confirmarSaida();
-                default  -> System.out.println("⚠  Opção inválida.");
+                default  -> System.out.println("  Opção inválida.");
             }
         }
 
@@ -64,7 +64,7 @@ public class MenuPrincipal {
 
     private void desfazerUltimaAcao() {
         if (ctx.tamanhoHistorico() == 0) {
-            System.out.println("⚠  Nenhuma ação para desfazer.");
+            System.out.println("  Nenhuma ação para desfazer.");
             return;
         }
         System.out.println("Última ação: " + ctx.descricaoUltimaAcao());
@@ -91,3 +91,4 @@ public class MenuPrincipal {
         new MenuPrincipal().iniciar();
     }
 }
+

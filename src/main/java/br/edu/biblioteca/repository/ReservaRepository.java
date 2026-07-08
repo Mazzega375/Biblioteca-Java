@@ -1,4 +1,4 @@
-package br.edu.biblioteca.repository;
+﻿package br.edu.biblioteca.repository;
 
 import br.edu.biblioteca.model.Reserva;
 import br.edu.biblioteca.database.ConexaoDB;
@@ -37,7 +37,7 @@ public class ReservaRepository {
                             reserva.setId(generatedKeys.getInt(1));
                         }
                     }
-                    System.out.println("✓ Reserva #" + reserva.getId() + " salva no banco de dados");
+                    System.out.println(" Reserva #" + reserva.getId() + " salva no banco de dados");
                 }
             } else {
                 String sql = "UPDATE reservas SET usuario_id=?, isbn_livro=?, data_reserva=?, status=? WHERE id=?";
@@ -48,14 +48,14 @@ public class ReservaRepository {
                     pstmt.setString(4, reserva.getStatus().name());
                     pstmt.setInt(5, reserva.getId());
                     pstmt.executeUpdate();
-                    System.out.println("✓ Reserva #" + reserva.getId() + " atualizada no banco de dados");
+                    System.out.println(" Reserva #" + reserva.getId() + " atualizada no banco de dados");
                 }
             }
             
             cache.put(reserva.getId(), reserva);
             
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao salvar reserva: " + e.getMessage());
+            System.err.println(" Erro ao salvar reserva: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -78,7 +78,7 @@ public class ReservaRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar reserva por ID: " + e.getMessage());
+            System.err.println(" Erro ao buscar reserva por ID: " + e.getMessage());
         }
         return null;
     }
@@ -90,12 +90,12 @@ public class ReservaRepository {
                 pstmt.setInt(1, id);
                 int linhasAfetadas = pstmt.executeUpdate();
                 if (linhasAfetadas > 0) {
-                    System.out.println("✓ Reserva #" + id + " removida do banco de dados");
+                    System.out.println(" Reserva #" + id + " removida do banco de dados");
                     cache.remove(id);
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao remover reserva: " + e.getMessage());
+            System.err.println(" Erro ao remover reserva: " + e.getMessage());
         }
     }
 
@@ -113,7 +113,7 @@ public class ReservaRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao listar reservas: " + e.getMessage());
+            System.err.println(" Erro ao listar reservas: " + e.getMessage());
         }
         
         return reservas;
@@ -135,7 +135,7 @@ public class ReservaRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar reservas por usuário: " + e.getMessage());
+            System.err.println(" Erro ao buscar reservas por usuário: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -157,7 +157,7 @@ public class ReservaRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar reservas por ISBN: " + e.getMessage());
+            System.err.println(" Erro ao buscar reservas por ISBN: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -177,7 +177,7 @@ public class ReservaRepository {
                 return reservas;
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao listar reservas aguardando: " + e.getMessage());
+            System.err.println(" Erro ao listar reservas aguardando: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -199,7 +199,7 @@ public class ReservaRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar reservas por status: " + e.getMessage());
+            System.err.println(" Erro ao buscar reservas por status: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -215,7 +215,7 @@ public class ReservaRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao contar reservas: " + e.getMessage());
+            System.err.println(" Erro ao contar reservas: " + e.getMessage());
         }
         return 0;
     }
@@ -236,10 +236,10 @@ public class ReservaRepository {
         try {
             List<Reserva> reservas = listarTodos();
             if (!reservas.isEmpty()) {
-                System.out.println("✓ " + reservas.size() + " reservas carregadas do banco de dados");
+                System.out.println(" " + reservas.size() + " reservas carregadas do banco de dados");
             }
         } catch (Exception e) {
-            System.err.println("✗ Erro ao carregar reservas do banco de dados: " + e.getMessage());
+            System.err.println(" Erro ao carregar reservas do banco de dados: " + e.getMessage());
         }
     }
 
@@ -262,7 +262,7 @@ public class ReservaRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar reservas aguardando por ISBN: " + e.getMessage());
+            System.err.println(" Erro ao buscar reservas aguardando por ISBN: " + e.getMessage());
         }
         return new ArrayList<>();
     }
@@ -278,7 +278,7 @@ public class ReservaRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao contar fila por ISBN: " + e.getMessage());
+            System.err.println(" Erro ao contar fila por ISBN: " + e.getMessage());
         }
         return 0;
     }
@@ -302,3 +302,4 @@ public class ReservaRepository {
         return conexaoDB.testarConexao();
     }
 }
+

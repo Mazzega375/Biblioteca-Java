@@ -1,4 +1,4 @@
-package br.edu.biblioteca.repository;
+﻿package br.edu.biblioteca.repository;
 
 import br.edu.biblioteca.model.Emprestimo;
 import br.edu.biblioteca.database.ConexaoDB;
@@ -45,7 +45,7 @@ public class EmprestimoRepository {
                             emprestimo.setId(generatedKeys.getInt(1));
                         }
                     }
-                    System.out.println("✓ Empréstimo #" + emprestimo.getId() + " salvo no banco de dados");
+                    System.out.println(" Empréstimo #" + emprestimo.getId() + " salvo no banco de dados");
                 }
             } else {
                 String sql = "UPDATE emprestimos SET usuario_id=?, isbn_livro=?, data_emprestimo=?, data_prevista_devolucao=?, data_devolucao=?, devolvido=? WHERE id=?";
@@ -62,14 +62,14 @@ public class EmprestimoRepository {
                     pstmt.setBoolean(6, emprestimo.isDevolvido());
                     pstmt.setInt(7, emprestimo.getId());
                     pstmt.executeUpdate();
-                    System.out.println("✓ Empréstimo #" + emprestimo.getId() + " atualizado no banco de dados");
+                    System.out.println(" Empréstimo #" + emprestimo.getId() + " atualizado no banco de dados");
                 }
             }
             
             cache.put(emprestimo.getId(), emprestimo);
             
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao salvar empréstimo: " + e.getMessage());
+            System.err.println(" Erro ao salvar empréstimo: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -92,7 +92,7 @@ public class EmprestimoRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar empréstimo por ID: " + e.getMessage());
+            System.err.println(" Erro ao buscar empréstimo por ID: " + e.getMessage());
         }
         return null;
     }
@@ -104,12 +104,12 @@ public class EmprestimoRepository {
                 pstmt.setInt(1, id);
                 int linhasAfetadas = pstmt.executeUpdate();
                 if (linhasAfetadas > 0) {
-                    System.out.println("✓ Empréstimo #" + id + " removido do banco de dados");
+                    System.out.println(" Empréstimo #" + id + " removido do banco de dados");
                     cache.remove(id);
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao remover empréstimo: " + e.getMessage());
+            System.err.println(" Erro ao remover empréstimo: " + e.getMessage());
         }
     }
 
@@ -127,7 +127,7 @@ public class EmprestimoRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao listar empréstimos: " + e.getMessage());
+            System.err.println(" Erro ao listar empréstimos: " + e.getMessage());
         }
         
         return emprestimos;
@@ -149,7 +149,7 @@ public class EmprestimoRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar empréstimos por usuário: " + e.getMessage());
+            System.err.println(" Erro ao buscar empréstimos por usuário: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -169,7 +169,7 @@ public class EmprestimoRepository {
                 return emprestimos;
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao listar empréstimos ativos: " + e.getMessage());
+            System.err.println(" Erro ao listar empréstimos ativos: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -189,7 +189,7 @@ public class EmprestimoRepository {
                 return emprestimos;
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao listar empréstimos em atraso: " + e.getMessage());
+            System.err.println(" Erro ao listar empréstimos em atraso: " + e.getMessage());
         }
         
         return new ArrayList<>();
@@ -205,7 +205,7 @@ public class EmprestimoRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao contar empréstimos: " + e.getMessage());
+            System.err.println(" Erro ao contar empréstimos: " + e.getMessage());
         }
         return 0;
     }
@@ -232,10 +232,10 @@ public class EmprestimoRepository {
         try {
             List<Emprestimo> emprestimos = listarTodos();
             if (!emprestimos.isEmpty()) {
-                System.out.println("✓ " + emprestimos.size() + " empréstimos carregados do banco de dados");
+                System.out.println(" " + emprestimos.size() + " empréstimos carregados do banco de dados");
             }
         } catch (Exception e) {
-            System.err.println("✗ Erro ao carregar empréstimos do banco de dados: " + e.getMessage());
+            System.err.println(" Erro ao carregar empréstimos do banco de dados: " + e.getMessage());
         }
     }
 
@@ -253,7 +253,7 @@ public class EmprestimoRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao buscar ativos do usuário: " + e.getMessage());
+            System.err.println(" Erro ao buscar ativos do usuário: " + e.getMessage());
         }
         return new ArrayList<>();
     }
@@ -275,7 +275,7 @@ public class EmprestimoRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("✗ Erro ao calcular contagem por livro: " + e.getMessage());
+            System.err.println(" Erro ao calcular contagem por livro: " + e.getMessage());
         }
         return mapa;
     }
@@ -284,3 +284,4 @@ public class EmprestimoRepository {
         return conexaoDB.testarConexao();
     }
 }
+

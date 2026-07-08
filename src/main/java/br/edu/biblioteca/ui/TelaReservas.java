@@ -1,4 +1,4 @@
-package br.edu.biblioteca.ui;
+﻿package br.edu.biblioteca.ui;
 
 import br.edu.biblioteca.action.AcaoCancelarReserva;
 import br.edu.biblioteca.action.AcaoReservar;
@@ -46,7 +46,7 @@ public class TelaReservas {
                 case "5" -> atenderProxima();
                 case "6" -> listar(ctx.reservaRepo.listarTodas(), "Todas as Reservas");
                 case "0" -> sair = true;
-                default  -> System.out.println("⚠  Opção inválida.");
+                default  -> System.out.println("  Opção inválida.");
             }
         }
     }
@@ -58,20 +58,20 @@ public class TelaReservas {
         System.out.print("ID do usuário: ");
         int usuarioId = lerInt();
         Usuario u = ctx.usuarioRepo.buscarPorId(usuarioId);
-        if (u == null)       { System.out.println("⚠  Usuário não encontrado.");  return; }
-        if (u.isBloqueado()) { System.out.println("⚠  Usuário bloqueado.");        return; }
+        if (u == null)       { System.out.println("  Usuário não encontrado.");  return; }
+        if (u.isBloqueado()) { System.out.println("  Usuário bloqueado.");        return; }
 
         System.out.print("ISBN do livro: ");
         String isbn = scanner.nextLine().trim();
         Livro livro = ctx.livroRepo.buscarPorIsbn(isbn);
-        if (livro == null)   { System.out.println("⚠  Livro não encontrado."); return; }
+        if (livro == null)   { System.out.println("  Livro não encontrado."); return; }
 
         // Verifica se já tem reserva ativa para esse usuário + ISBN
         boolean jaReservou = ctx.reservaRepo.buscarPorUsuario(usuarioId).stream()
                 .anyMatch(r -> r.getIsbnLivro().equals(isbn)
                             && r.getStatus() == Reserva.Status.AGUARDANDO);
         if (jaReservou) {
-            System.out.println("⚠  Você já possui uma reserva ativa para este livro.");
+            System.out.println("  Você já possui uma reserva ativa para este livro.");
             return;
         }
 
@@ -86,9 +86,9 @@ public class TelaReservas {
         System.out.print("ID da reserva: ");
         int id = lerInt();
         Reserva reserva = ctx.reservaRepo.buscarPorId(id);
-        if (reserva == null)                              { System.out.println("⚠  Reserva não encontrada."); return; }
+        if (reserva == null)                              { System.out.println("  Reserva não encontrada."); return; }
         if (reserva.getStatus() != Reserva.Status.AGUARDANDO) {
-            System.out.println("⚠  Reserva já foi " + reserva.getStatus() + ".");
+            System.out.println("  Reserva já foi " + reserva.getStatus() + ".");
             return;
         }
         ctx.executar(new AcaoCancelarReserva(ctx.reservaRepo, reserva));
@@ -122,7 +122,7 @@ public class TelaReservas {
         String isbn = scanner.nextLine().trim();
         Optional<Reserva> opt = ctx.reservaRepo.atenderProximaReserva(isbn);
         if (opt.isEmpty()) {
-            System.out.println("⚠  Sem reservas na fila para esse ISBN.");
+            System.out.println("  Sem reservas na fila para esse ISBN.");
         } else {
             Reserva r = opt.get();
             Usuario u = ctx.usuarioRepo.buscarPorId(r.getUsuarioId());
@@ -142,3 +142,4 @@ public class TelaReservas {
         catch (NumberFormatException e) { return 0; }
     }
 }
+
